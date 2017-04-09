@@ -15,7 +15,7 @@ npm install package you want
 ### modify package.json
 ```Json
 {
-  "name": "xxx",   //change name after clone
+  "name": "xxx",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
