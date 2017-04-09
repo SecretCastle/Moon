@@ -48,6 +48,6 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.BannerPlugin('This file is created by Bijiabo and SecretCastle')
+        new webpack.BannerPlugin('This file is created by SecretCastle')
     ]
 };
