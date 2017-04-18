@@ -1,6 +1,6 @@
-#准备
+# 准备
 
-##设备id
+## 设备id
 
 ```
 deviceid = 51c0c9fdd12577d2da2ea396720bab21
@@ -8,7 +8,7 @@ user_id=40e6c8b3a2f0074ca0fe7bc308db303d
 
 ```
 
-##api准备
+## api准备
 
 获取蜻蜓FM
 
@@ -26,22 +26,22 @@ http://api2.qingting.fm/v6/media/categories/521/channels/order/bydefault/0/attr/
 ```
 
 
-###播放
+### 播放
 
 ```
 http://upod.qingting.fm/vod/00/00/0000000000000000000024139635_64.m4a
 
 ```
 
-##归纳
+## 归纳
 
-###服务器
+### 服务器
 ```
 http://api2.qingting.fm 信息服务器
 http://upod.qingting.fm 播放服务器
 ```
 
-###api使用
+### api使用
 
 ```
 1、获取分类
