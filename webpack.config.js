@@ -3,9 +3,6 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: 'xxxxx.js',
-    externals: {
-        jquery: 'window.$'
-    },
     output: {
         filename: 'xxxx.js',
         path: path.resolve(__dirname, 'dist')
