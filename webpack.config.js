@@ -2,9 +2,9 @@ var path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: 'xxxxx.js',
+    entry: './app/main.js',
     output: {
-        filename: 'xxxx.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
@@ -16,6 +16,9 @@ module.exports = {
             test: /\.js$/,
             loaders: ["babel-loader", "eslint-loader"],
             exclude: /node_modules/
+        }, {
+            test: /\.vue$/,
+            loader: ['vue-loader']
         }, {
             test: /\.scss$/,
             use: [{

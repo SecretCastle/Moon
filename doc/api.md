@@ -60,3 +60,7 @@ http://upod.qingting.fm 播放服务器
 /vod/00/00/0000000000000000000024139635_64.m4a
 
 ```
+
+## Http请求部分
+
+参考[Axios](https://github.com/mzabriskie/axios)
