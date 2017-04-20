@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.css', '.scss']
+        extensions: ['.js', '.jsx', '.css', '.scss', '.vue']
     },
     devServer: { inline: true },
     module: {
