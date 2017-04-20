@@ -10,7 +10,18 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.css', '.scss', '.vue']
     },
-    devServer: { inline: true },
+    devServer: {
+        proxy: {
+            '/categories': {
+                target: 'https://api2.qingting.fm/v6/media',
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: {
+                    '^/categories': '/categories'
+                }
+            }
+        }
+    },
     module: {
         rules: [{
             test: /\.js$/,
@@ -49,5 +60,6 @@ module.exports = {
     },
     plugins: [
         new webpack.BannerPlugin('This file is created by SecretCastle')
-    ]
+    ],
+
 };

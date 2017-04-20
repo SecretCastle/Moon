@@ -1,7 +1,7 @@
 <template>
     <div class="listItem">
         <div class="panel">
-            <span>{{listData.title}}</span>
+            <span>{{listData.name}}</span>
         </div>
     </div>
 </template>

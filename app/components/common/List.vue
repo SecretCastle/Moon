@@ -14,7 +14,7 @@
         },
         created (){
             var _ = this;
-            axios.get('https://cnodejs.org/api/v1/topics').then(function(res){
+            axios.get('/categories').then(function(res){
                 console.log(res.data.data);
                 _.$set(_,"listData",res.data.data);
             }).catch(function(err){
