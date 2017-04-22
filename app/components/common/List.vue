@@ -1,6 +1,6 @@
 <template>
     <div class="list-wrap">
-        <list-item v-for = "item in listData" :list-data="item"></list-item>
+        <list-item v-for = "item in listData" :list-data="item" :key="item.id"></list-item>
     </div>
 </template>
 <script>
@@ -14,8 +14,7 @@
         },
         created (){
             var _ = this;
-            axios.get('/categories').then(function(res){
-                console.log(res.data.data);
+            axios.get('/channelondemands/174180/programs/order/0/curpage/1/pagesize/50').then(function(res){
                 _.$set(_,"listData",res.data.data);
             }).catch(function(err){
                 console.log(err);

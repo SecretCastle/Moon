@@ -19,6 +19,14 @@ module.exports = {
                 pathRewrite: {
                     '^/categories': '/categories'
                 }
+            },
+            '/channelondemands': {
+                target: 'https://api2.qingting.fm/v6/media',
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: {
+                    '^/channelondemands': '/channelondemands'
+                }
             }
         }
     },
