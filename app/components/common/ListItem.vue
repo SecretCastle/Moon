@@ -1,7 +1,7 @@
 <template>
-    <div class="listItem">
+    <div class="listItem" @click = "toNav">
         <div class="panel">
-            <span>{{listData.title}}</span>
+            <span>{{data.name}}</span>
         </div>
     </div>
 </template>
@@ -9,10 +9,16 @@
     export default {
         data(){
             return {
+                data: this.listData
             }
         },
         props:{
             listData:Object
+        },
+        methods:{
+           toNav:function(event){
+                this.$router.push({path:`/type/${this.data.id}`});
+           }
         }
     }
 </script>

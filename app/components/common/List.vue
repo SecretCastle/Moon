@@ -14,7 +14,7 @@
         },
         created (){
             var _ = this;
-            axios.get('/channelondemands/174180/programs/order/0/curpage/1/pagesize/50').then(function(res){
+            axios.get('/categories').then(function(res){
                 _.$set(_,"listData",res.data.data);
             }).catch(function(err){
                 console.log(err);
