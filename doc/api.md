@@ -1,7 +1,7 @@
 # 准备
 
 ## 目录
-- [deviceid和userid](##deviceid和userid)
+- [deviceid和userid](#deviceid和userid)
 - [API准备](#a#pi准备)
 	- [服务器](###服务器)
 	- [api使用](###api使用)
