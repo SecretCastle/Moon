@@ -5,12 +5,12 @@
 - [API准备](#api准备)
 	- [服务器](#服务器)
 	- [api使用](#api使用)
-		- [获取分类](#1、获取分类)
-		- [点击某分类，此次点击521](#2、点击某分类，此次点击521)
-		- [点击某一个产品如id为174180下的列表](#3、点击某一个产品如id为174180下的列表)
-		- [点击播放](#4、点击播放)
-		- [获取首页推荐banner](#5、获取首页推荐banner)
-		- [获取某个分类下banner](#6、获取某个分类下banner)
+		- [获取分类](#获取分类)
+		- [点击某分类，此次点击521](#点击某分类，此次点击521)
+		- [点击某一个产品如id为174180下的列表](#点击某一个产品如id为174180下的列表)
+		- [点击播放](#点击播放)
+		- [获取首页推荐banner](#获取首页推荐banner)
+		- [获取某个分类下banner](#获取某个分类下banner)
 	- [用户](#用户)
 	- [Http请求部分](#Http请求部分)
 
@@ -34,7 +34,7 @@ http://user.api.qingting.fm 用户服务器
 
 ### api使用
 
-#### 1、获取分类
+#### 获取分类
 ```
 /v6/media/categories 
 
@@ -245,7 +245,7 @@ http://user.api.qingting.fm 用户服务器
 
 ```
 
-#### 2、点击某分类，此次点击521
+#### 点击某分类，此次点击521
 ```
 /v6/media/categories/521
 
@@ -497,7 +497,7 @@ http://user.api.qingting.fm 用户服务器
     ]
 }
 ```
-#### 2、点击某分类，获得分类（此为获得521下对前30个）
+#### 点击某分类，获得分类（此为获得521下对前30个）
 ```
 /v6/media/categories/521/channels/order/0/curpage/1/pagesize/30 
 
@@ -555,7 +555,7 @@ http://user.api.qingting.fm 用户服务器
 	}]
 }
 ```
-#### 3、点击某一个产品 如id为174180下的列表
+#### 点击某一个产品 如id为174180下的列表
 ```
 /v6/media/channelondemands/211852/programs/order/0/curpage/1/pagesize/50?user_id=40e6c8b3a2f0074ca0fe7bc308db303d
 
@@ -598,11 +598,11 @@ http://user.api.qingting.fm 用户服务器
 }
 
 ```
-#### 4、点击播放
+#### 点击播放
 ```
 /vod/00/00/0000000000000000000024139635_64.m4a
 ```
-#### 5、获取首页推荐banner
+#### 获取首页推荐banner
 ```
 /v6/media/recommends/guides/section/0
 
@@ -924,7 +924,7 @@ http://user.api.qingting.fm 用户服务器
 
 ```
 
-#### 6、获取某个分类下banner
+#### 获取某个分类下banner
 ```
 注意：section_id 通过categories获取
 /v6/media/recommends/guides/section/section_id
