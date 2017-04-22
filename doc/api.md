@@ -555,7 +555,7 @@ http://user.api.qingting.fm 用户服务器
 	}]
 }
 ```
-#### 点击某一个产品 如id为174180下的列表
+#### 点击某一个产品如id为174180下的列表
 ```
 /v6/media/channelondemands/211852/programs/order/0/curpage/1/pagesize/50?user_id=40e6c8b3a2f0074ca0fe7bc308db303d
 
