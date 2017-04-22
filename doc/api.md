@@ -14,7 +14,7 @@
 	- [用户](#用户)
 	- [Http请求部分](#Http请求部分)
 
-## deviceid 和 userid
+## deviceid和userid
 
 ```
 deviceid = 51c0c9fdd12577d2da2ea396720bab21
