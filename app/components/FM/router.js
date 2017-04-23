@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 import FM_Index from './index';
 import FM_type from './type/type';
-
+import FM_Categories from './categories/categories';
 
 
 const router = new VueRouter({
@@ -14,6 +14,9 @@ const router = new VueRouter({
     }, {
         path: '/type/:id',
         component: FM_type
+    }, {
+        path: '/categories',
+        component: FM_Categories
     }]
 });
 

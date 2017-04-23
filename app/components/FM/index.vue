@@ -1,12 +1,17 @@
 <template>
     <div class="wrap">
-        <swiper-box :img-src="img[0]"></swiper-box>
-        <list-box></list-box>
+        <div class="info_area">
+            <swiper-box :img-src="img[0]"></swiper-box>
+            <list-box></list-box>
+        </div>
+        <play-area></play-area>
     </div> 
 </template>
 <script>
    import Swiper from '../common/Swiper';
    import List from '../common/List';
+   import PlayArea from './play/Play';
+
    export default {
        data(){
             return {
@@ -22,10 +27,17 @@
        },
         components:{
             "swiper-box":Swiper,
-            "list-box":List
+            "list-box":List,
+            "play-area":PlayArea
         }
    }
 </script>
-<style lang="sass">
-    
+<style lang="sass" scoped>
+    .wrap{
+        position:relative;
+    }
+    .info_area{
+        position:relative;
+        margin-bottom:85px;
+    }
 </style>

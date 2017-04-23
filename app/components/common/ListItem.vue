@@ -23,11 +23,11 @@
     }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
     .listItem{
         position:relative;
         margin:5px;
-        
+
         .panel{
             padding:5px;
             background:#fff;

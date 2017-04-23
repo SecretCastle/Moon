@@ -25,3 +25,14 @@
         }
     }
 </script>
+
+<style lang="sass" scoped>
+    .list-wrap{
+        position:relative;
+        display:flex;
+        justify-content:flex-start;
+        flex-wrap:wrap;
+    }
+
+
+</style>
