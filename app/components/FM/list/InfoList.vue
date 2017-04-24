@@ -6,7 +6,7 @@
 
 
 <script>
-    import InfoItem from './InfoListItem';
+    import InfoItem from './infolistitem';
 
     export default {
         data(){

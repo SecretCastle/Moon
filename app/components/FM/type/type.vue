@@ -5,7 +5,7 @@
 </template>
 <script>
     import axios from 'axios';
-    import InfoList from '../list/InfoList';
+    import InfoList from '../list/infolist';
     export default {
         data(){
             return {
@@ -32,6 +32,7 @@
 <style lang="sass" scoped>
     .type_wrap{
         position:relative;
+        margin-bottom:85px;
     }
 
 

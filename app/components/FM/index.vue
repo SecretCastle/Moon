@@ -2,20 +2,17 @@
     <div class="wrap">
         <div class="info_area">
             <swiper-box :img-src="img[0]"></swiper-box>
-            <list-box></list-box>
         </div>
-        <play-area></play-area>
     </div> 
 </template>
 <script>
    import Swiper from '../common/Swiper';
    import List from '../common/List';
-   import PlayArea from './play/Play';
 
    export default {
        data(){
             return {
-                img:["http://pic.qiantucdn.com/58pic/21/41/37/85N58PIC65z_1024.jpg"],
+                img:["http://img.zcool.cn/community/014813571214bd6ac7251343d76f9a.jpg@900w_1l_2o_100sh.jpg"],
                 list:[{
                     id:'1',
                     title:'title one'
@@ -27,8 +24,7 @@
        },
         components:{
             "swiper-box":Swiper,
-            "list-box":List,
-            "play-area":PlayArea
+            "list-box":List
         }
    }
 </script>
