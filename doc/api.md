@@ -6,8 +6,9 @@
 	- [服务器](#服务器)
 	- [api使用](#api使用)
 		- [获取分类](#获取分类)
-		- [点击某分类，此次点击521](#点击某分类)
-		- [点击某一个产品如id为174180下的列表](#点击某一个产品如id为174180下的列表)
+		- [点击某分类](#点击某分类)
+		- [点击分类下具体细分类](#点击某具体分类)
+		- [点击某一个产品](#点击某一个产品如id为174180下的列表)
 		- [点击播放](#点击播放)
 		- [获取首页推荐banner](#获取首页推荐banner)
 		- [获取某个分类下banner](#获取某个分类下banner)
@@ -499,6 +500,76 @@ http://search.qingting.fm 搜索服务器
     ]
 }
 ```
+
+#### 点击某具体分类
+```
+
+{
+	'推荐默认排序':'bydefault',
+	'最热排序':'bytrend',
+	'最新排序':'byupdate',
+	'2744':'分类下类别id，其他分类以此类推'
+}
+
+/v6/media/categories/521/channels/order/bydefault/0/attr/2744/curpage/1/pagesize/30
+
+返回参数
+
+{
+	"data":[
+		{
+		    "auto_play": 0,
+		    "category_id": 521,
+		    "chatgroup_id": 0,
+		    "description": "【火爆完本】平凡人逆袭成一代大侠的故事。有绝世武功，有美人相伴，傻郭靖、俏黄蓉成就一段武林佳话。从漠北到江南，只要有一颗纯朴善良的赤子之心，终会成为一代射雕英雄。金庸最脍炙人口的作品，有华人的地方就有《射雕英雄传》！",
+		    "detail": {
+		        "podcasters": [
+		            {
+		                "avatar": "http://pic.qingting.fm/2016/0812/20160812152637673.jpeg",
+		                "award_open": "99",
+		                "birthday": "",
+		                "description": "",
+		                "fan_num": 3013,
+		                "id": 53803,
+		                "location": "",
+		                "nickname": "金庸",
+		                "sex": 0,
+		                "signature": "",
+		                "sns_open": true,
+		                "user_system_id": "c01de60e8847701fac6db79513fd6562",
+		                "weibo_id": "1",
+		                "weibo_name": ""
+		            }
+		        ],
+		        "program_count": 153
+		    },
+		    "id": 166894,
+		    "is_finished": 1,
+		    "latest_program": "【151】华山论剑2",
+		    "link_id": 0,
+		    "ordered": 1,
+		    "record_enabled": 0,
+		    "sale_props": "4771600 4771601 4771602 4771603 4771604",
+		    "sale_type": 5,
+		    "star": 6,
+		    "status": 99,
+		    "thumbs": {
+		        "200_thumb": "http://pic.qingting.fm/2017/0208/20170208114554968.jpg!200",
+		        "400_thumb": "http://pic.qingting.fm/2017/0208/20170208114554968.jpg!400",
+		        "800_thumb": "http://pic.qingting.fm/2017/0208/20170208114554968.jpg!800",
+		        "large_thumb": "http://pic.qingting.fm/2017/0208/20170208114554968.jpg!large",
+		        "medium_thumb": "http://pic.qingting.fm/2017/0208/20170208114554968.jpg!medium",
+		        "small_thumb": "http://pic.qingting.fm/2017/0208/20170208114554968.jpg!small"
+		    },
+		    "title": "射雕英雄传（全集）",
+		    "type": "channel_ondemand",
+		    "update_time": "2016-08-08 22:08:43"
+		}
+	]
+}
+```
+
+
 #### 点击某分类，获得分类（此为获得521下对前30个）
 ```
 /v6/media/categories/521/channels/order/0/curpage/1/pagesize/30 
