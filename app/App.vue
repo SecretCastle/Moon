@@ -1,9 +1,5 @@
 <template>
     <div id = "app">
-        <div class="tab">
-            <router-link to="/" class="tabLi">首页</router-link>
-            <router-link to="/categories" class="tabLi">分类</router-link>
-        </div>
         <router-view></router-view>
         <play-area></play-area>
     </div>
@@ -35,6 +31,12 @@
        height:30px;
        display:flex;
        display:-webkit-flex;
+       position:fixed;
+       top:0;
+       left:0;
+       width:100%;
+       z-index:999;
+       background:#fff;
        .tabLi{
            flex:1;
            float:left;

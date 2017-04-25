@@ -3,6 +3,10 @@
         <div class="info_area">
             <swiper-box :img-src="img[0]"></swiper-box>
         </div>
+        <div class="type_class">
+            <router-link to="/categories" class="iner">分类</router-link>
+        </div>
+       
     </div> 
 </template>
 <script>
@@ -31,9 +35,27 @@
 <style lang="sass" scoped>
     .wrap{
         position:relative;
+        margin-bottom:85px;
     }
     .info_area{
-        position:relative;
-        margin-bottom:85px;
+        position:relative; 
+    }
+    .type_class{
+       display:flex;
+       display:-webkit-flex;
+       .iner{
+           flex:1;
+           height:40px;
+           text-align:center;
+           line-height:40px;
+           text-decoration:none;
+           background:#fff;
+       }
+    }
+    .type_class::after{
+        content:"";
+        display:table;
+        clear:both;
+        overflow:hidden;
     }
 </style>

@@ -8,7 +8,8 @@
     export default {
         data(){
             return {
-                id: this.resDetail.id
+                id: this.resDetail.id,
+                typeid : this.$route.params.id
             }
         },
         props:{
@@ -16,7 +17,7 @@
         },
         methods:{
             getDetail:function(e){
-                
+               this.$router.push({path:`/show/${this.typeid}/${this.id}`});
             }
         }
     }

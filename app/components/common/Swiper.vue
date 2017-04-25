@@ -10,7 +10,7 @@
         }
     }
 </script>
-<style lang="css">
+<style lang="css" scoped>
     .swiper{
         position:relative;
     }

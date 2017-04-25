@@ -15,7 +15,8 @@
         height:80px;
         position:fixed;
         z-index:999;
-        background-color:#fff;
+        background-color:#000;
+        opacity:0.8;
         left:0;
         bottom:0;
         line-height:80px;
