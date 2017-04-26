@@ -43,32 +43,3 @@
         }
     }
 </script>
-
-<style lang="sass" scoped>
-    .navTitle{
-        width:100%;
-        height:40px;
-        background:#fff;
-        position:fixed;
-        z-index:999;
-        text-align:center;
-        line-height:40px;
-        top:0;
-    }
-    .scroll_wrap{
-        position:absolute;
-        left:0;
-        top:125px;
-        right:0;
-    }
-    .noTop{
-        margin-top:45px;
-    }
-    .show{
-        position:relative;
-        margin-top:5px;
-        margin-left:5px;
-        margin-right:5px;
-        margin-bottom:85px;
-    }
-</style>

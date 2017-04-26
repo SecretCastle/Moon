@@ -28,12 +28,3 @@
         }
     }
 </script>
-
-<style lang="sass" scoped>
-    .type_wrap{
-        position:relative;
-        margin-bottom:85px;
-    }
-
-
-</style>

@@ -5,7 +5,7 @@ import FM_Index from './index';
 import FM_type from './type/type';
 import FM_Categories from './categories/categories';
 import FM_Show from './show/show';
-import TEST from '../Tools/ScorllFresh';
+import TEST from '../Tools/TestReFresh';
 
 const router = new VueRouter({
     hashbang: false,

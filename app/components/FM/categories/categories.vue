@@ -17,9 +17,3 @@
         }
    }
 </script>
-
-<style lang="sass" scoped>
-    .categories_style{
-        margin-bottom:85px;
-    }
-</style>

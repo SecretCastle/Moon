@@ -24,21 +24,3 @@
         }
     }
 </script>
-<style lang="sass" scoped>
-    $bgColor:#fff;
-    .info_list_items{
-        margin: 5px;
-        .panel{
-            padding:10px;
-            background-color: $bgColor;
-            border-bottom:1px solid #ccc;
-        } 
-        .innerPanel{
-            padding-top:0;
-            padding-left:20px;
-            padding-right:20px;
-            padding-bottom:0;
-            background:$bgColor;
-        }
-    }
-</style>

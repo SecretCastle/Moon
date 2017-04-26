@@ -26,8 +26,3 @@
     }
 </script>
 
-<style lang="sass" scoped>
-    .info_list{
-
-    }
-</style>
