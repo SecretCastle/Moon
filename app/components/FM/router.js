@@ -5,6 +5,7 @@ import FM_Index from './index';
 import FM_type from './type/type';
 import FM_Categories from './categories/categories';
 import FM_Show from './show/show';
+import TEST from '../Tools/ScorllFresh';
 
 const router = new VueRouter({
     hashbang: false,
@@ -20,6 +21,9 @@ const router = new VueRouter({
     }, {
         path: '/show/:typeid/:id',
         component: FM_Show
+    }, {
+        path: '/scroll',
+        component: TEST
     }]
 });
 
