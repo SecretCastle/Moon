@@ -4,4 +4,5 @@
 
 ## 接口
 
-+ [接口](https://github.com/SecretCastle/Moon/blob/master/doc/api.md)
++ [移动端接口](https://github.com/SecretCastle/Moon/blob/master/doc/api.md)
++ [PC端接口](https://github.com/SecretCastle/Moon/blob/master/doc/apiOfpc.md)
