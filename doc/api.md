@@ -1,4 +1,4 @@
-# 准备
+# 移动端api
 
 ## 目录
 - [deviceid和userid](#deviceid和userid)

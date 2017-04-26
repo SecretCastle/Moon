@@ -1,21 +1,22 @@
 # PC端api
 
 ## 目录
-
+- [服务器](#服务器)
+- [api使用](#api使用)
+	- [通用获取首页](#common)
 
 
 ### 服务器
 ``` 
 http://i.qingting.fm
-
 ```
 ### api使用
 
 #### common
 ```
 /wapi/guides/featured/common
-返回参数
 
+返回参数
 {
     "code": 0,
     "data":{
