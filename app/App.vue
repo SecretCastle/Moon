@@ -1,7 +1,7 @@
 <template>
     <div id = "app">
         <router-view></router-view>
-        <play-area></play-area>
+        
     </div>
 </template>
 <script>
@@ -12,9 +12,7 @@
 
             }
         },
-        components:{
-            "play-area":PlayArea
-        }
+        
     }
 </script>
 

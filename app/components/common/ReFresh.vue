@@ -1,7 +1,7 @@
 <template>
-    <div id = "scroll_wrap" @touchstart = "touchStart" @touchmove = "touchMove" @touchend = "touchEnd">
+    <div ref="scroller" id = "scroll_wrap" @touchstart = "touchStart" @touchmove = "touchMove" @touchend = "touchEnd">
+        <div class="scroll_top_title">刷新</div>
         <slot name = "s1">s1的东西</slot>
-        <slot name = "s2">s2的东西</slot>
     </div>
 </template>
 <script>
@@ -18,51 +18,54 @@
             }
         },
 
-
         props:{
-            refresh:{
+            refreshState:{
+                type:Boolean,
+                require:false
+            },
+            onRefresh:{
                 type:Function,
                 require:false,
-                default: undefined
+                default :undefined
             }
         },
 
         methods:{
             touchStart(e){
-                this.startY = e.touches[0].pageY;
+                e.preventDefault();
+                this.startY = e.changedTouches[0].pageY;
                 this.isTap = true;
-                console.log(this);
             },
             touchMove(e){
+                e.preventDefault();
                 if(!this.isTap){
                     return;
                 }
-                console.log('touch move');
                 this.isMove = true;
-                this.isMoveY = e.touches[0].pageY - this.startY;
-                
-                if(this.isMoveY <= 100){
+                this.isMoveY = e.changedTouches[0].pageY - this.startY;
+                if(this.isMoveY < 80){
                     this.$el.style.transform = `translateY(${this.isMoveY}px)`;
+                    this.$el.style.transition = 'transform 100ms ease-out';
                 }
             },
             touchEnd(e){
+                e.preventDefault();
                 if(!this.isMove){
                     return;
                 }
-                if(this.isMoveY > 100){
-                    setTimeout(()=>{
-                        this.$el.style.transform = `translateY(0)`;
-                    },2000);   
-                }else{
+                if(this.isMoveY < 80){
                     this.$el.style.transform = `translateY(0)`;
+                    this.$el.style.transition = 'transform 100ms ease-out';
+                }else{
+                    this.onRefresh();
                 }
-               
                 this.isTap = false;
                 this.isMove = false;
-                console.log('touch end');
             },
-            onRefresh(){
-                
+            onFresh(){
+                console.log('这是fresh组件中的onFresh方法');
+                this.$el.style.transform = `translateY(0)`;
+                this.$el.style.transition = 'transform 100ms ease-out';
             }
         }
     }

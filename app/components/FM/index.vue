@@ -5,7 +5,6 @@
         </div>
         <div class="type_class">
             <router-link to="/categories" class="iner">分类</router-link>
-            <router-link to="/scroll" class="iner">刷新测试</router-link>
         </div>
        
     </div> 
