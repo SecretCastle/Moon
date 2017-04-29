@@ -1,8 +1,6 @@
 <template>
     <div class="wrap">
-        <div class="info_area">
-            <swiper-box :img-src="img[0]"></swiper-box>
-        </div>
+        <swiper-box :img-data="imgData"></swiper-box>
         <div class="type_class">
             <router-link to="/categories" class="iner">分类</router-link>
         </div>
@@ -12,23 +10,28 @@
 <script>
    import Swiper from '../common/Swiper';
    import List from '../common/List';
-
+   import axios from 'axios';
    export default {
        data(){
             return {
-                img:["http://img.zcool.cn/community/014813571214bd6ac7251343d76f9a.jpg@900w_1l_2o_100sh.jpg"],
-                list:[{
-                    id:'1',
-                    title:'title one'
-                },{
-                    id :'2',
-                    title:'title two'
-                }]
+                imgData:{},
+                recommendData:[]
             }
        },
         components:{
             "swiper-box":Swiper,
             "list-box":List
+        },
+        created(){
+            axios.get('/section/0').then((res)=>{
+                if(res){
+                    console.info(res.data);
+                    this.imgData = res.data.data.shift();
+                    this.recommendData = res.data.data.splice(0,1);
+                }
+            }).catch((err)=>{
+                console.log(err);
+            });
         }
    }
 </script>

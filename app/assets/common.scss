@@ -31,6 +31,7 @@
  
  #app {
      position: relative;
+     overflow: hidden;
  }
  
  $bgColor:#fff;
@@ -251,5 +252,19 @@
      }
      .sale_status {
          font-size: 12px;
+     }
+ }
+ /*--------------------------------------Top Img-------------------------------------------*/
+ 
+ .swiper {
+     position: relative;
+     height: 150px;
+     .swiper_img {
+         position: absolute;
+         height: 100%;
+         img {
+             width: 100%;
+             height: 100%;
+         }
      }
  }
