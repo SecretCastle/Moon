@@ -8,6 +8,27 @@
      background: #eee
  }
  
+ .flex_left,
+ .flex_right,
+ .flex_center {
+     display: flex;
+     display: -webkit-flex;
+     box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+ }
+ 
+ .flex_left {
+     justify-content: flex-start;
+ }
+ 
+ .flex_right {
+     justify-content: flex-end;
+ }
+ 
+ .flex_center {
+     justify-content: center;
+ }
+ 
  #app {
      position: relative;
  }
@@ -83,7 +104,7 @@
      position: fixed;
      z-index: 999;
      background-color: #000;
-     opacity: 0.8;
+     opacity: 1;
      left: 0;
      bottom: 0;
      line-height: 80px;
@@ -204,4 +225,31 @@
  
  .scroll_top_title::before {
      content: "-";
+ }
+ /*-------------------------------------Play Area-----------------------------------------*/
+ 
+ .play_area_wrap {
+     position: relative;
+     margin-bottom: 85px;
+     .loadmore {
+         text-align: center;
+         display: block;
+         padding: 5px 0;
+         background: #fff;
+         margin-top: 5px;
+     }
+ }
+ 
+ .play_area_wrap_item {
+     padding: 10px;
+     background: $bgColor;
+     line-height: 30px;
+     margin-bottom: 5px;
+     .num {
+         font-size: 16px;
+         margin-right: 10px;
+     }
+     .sale_status {
+         font-size: 12px;
+     }
  }

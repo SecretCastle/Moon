@@ -2,7 +2,7 @@
     <div class="wrap">
         <div class="navTitle">Title</div>
         <div class="noTop">
-            <scroll-fresh ref="scroller" :on-refresh = "onRefresh">
+            <scroll-fresh ref="scroller" :on-refresh = "onRefresh" :fresh-type="1">
                 <div slot="s1">
                     <show-list v-for = "item in data" :data-detail = "item" :key = "item.id"></show-list>
                 </div>
@@ -33,6 +33,7 @@
                 this.dataLength = res.data.total;
                 this.nowSize = res.data.data.length;
                 this.data = res.data.data;
+                console.log('初始化加载');
             }).catch((err)=>{
                 console.log(err);
             });
@@ -45,6 +46,7 @@
 
         methods:{
             onRefresh(){
+                console.log(this.dataLength,this.nowSize);
                 if(this.dataLength > this.nowSize){
                     this.indexPage += 1;
                     axios.get(`/categories/${this.typeid}/channels/order/bydefault/0/attr/${this.id}/curpage/${this.indexPage}/pagesize/${this.startSize}`).then((res)=>{

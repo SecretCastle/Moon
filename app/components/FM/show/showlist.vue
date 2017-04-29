@@ -1,5 +1,5 @@
 <template>
-    <div class="show_item">
+    <div class="show_item" @click="detail">
         <div class="item_pic">
             <img :src="dataDetail.thumbs.large_thumb" />
         </div>
@@ -20,6 +20,11 @@
         },
         props:{
             dataDetail:Object
+        },
+        methods:{
+            detail(){
+                this.$router.push({path:`/detail/${this.dataDetail.id}`});
+            }
         }
     }
 </script>

@@ -5,14 +5,13 @@
     </div>
 </template>
 <script>
-    import PlayArea from './components/FM/play/play';
+    
     export default {
         data(){
             return {
 
             }
-        },
-        
+        }
     }
 </script>
 
