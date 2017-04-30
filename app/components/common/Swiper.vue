@@ -22,6 +22,16 @@
             imgData:{
                 type:Object,
                 require:true
+            },
+            delayTime:{
+                type:Number,
+                require:false,
+                default:2000
+            },
+            isDelay:{
+                type:Boolean,
+                require:false,
+                default:false
             }
         },
         updated(){
@@ -30,6 +40,13 @@
             this.imgData.recommends.forEach((n,i)=>{
                 this.$el.childNodes[i].style.transform = `translate3d(${100*i}%,0,0)`;
             });
+            if(this.isDelay){
+                setInterval(()=>{
+                    console.log('延迟加载，滚动');
+                    this.autoMoveFn();
+                },this.delayTime);
+               
+            }
         },
         methods:{
             touchStart(e){
@@ -49,22 +66,39 @@
                     return;
                 }
                 this.touchFn();
-                console.log(this.touchMoveX);
 
                 this.isMove = false;
                 this.isTap  = false;
             },
             touchFn(){
-                if(this.touchMoveX < -150){
+                if(this.touchMoveX < -150){  // right
                     if(this.currentIndex < this.imgLength -1){
-                        this.currentIndex += 1;
-                        
+                        this.currentIndex += 1;    
                     }else{
                         this.currentIndex = 0;
                     }
-                    this.$el.style.transform = `translate3d(-${100*this.currentIndex}%,0,0)`;
-                    this.$el.style.transition = `transform 0.5s ease-out`;
+                    this.moveSlideFn();
+                }else if(this.touchMoveX > 150){ //left
+                    if(this.currentIndex < this.imgLength -1 && this.currentIndex !== 0){
+                        this.currentIndex -= 1;    
+                    }else{
+                        this.currentIndex = 0;
+                    }
+                    this.moveSlideFn();
                 }
+            },
+            moveSlideFn(){
+                this.$el.style.transform = `translate3d(-${100*this.currentIndex}%,0,0)`;
+                this.$el.style.transition = `transform 0.3s ease-out`;
+            },
+            autoMoveFn(){
+                if(this.currentIndex < this.imgLength -1){
+                    this.currentIndex += 1;    
+                }else{
+                    this.currentIndex = 0;
+                }
+                this.$el.style.transform = `translate3d(-${100*this.currentIndex}%,0,0)`;
+                this.$el.style.transition = `transform 0.5s ease-out`;
             }
         }
     }

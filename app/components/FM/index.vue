@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-        <swiper-box :img-data="imgData"></swiper-box>
+        <swiper-box :img-data="imgData" :delay-time="4000" :is-delay="true"></swiper-box>
         <div class="type_class">
             <router-link to="/categories" class="iner">分类</router-link>
         </div>
@@ -25,7 +25,6 @@
         created(){
             axios.get('/section/0').then((res)=>{
                 if(res){
-                    console.info(res.data);
                     this.imgData = res.data.data.shift();
                     this.recommendData = res.data.data.splice(0,1);
                 }
