@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="wrap">
+    <div class="show_wrap">
         <div class="navTitle">Title</div>
         <div class="noTop">
             <scroll-fresh ref="scroller" :on-refresh = "onRefresh" :fresh-type="1">

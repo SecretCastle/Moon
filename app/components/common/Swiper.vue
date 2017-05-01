@@ -42,7 +42,7 @@
             });
             if(this.isDelay){
                 setInterval(()=>{
-                    console.log('延迟加载，滚动');
+                    //console.log('延迟加载，滚动');
                     this.autoMoveFn();
                 },this.delayTime);
                
