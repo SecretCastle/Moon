@@ -33,7 +33,7 @@ const Public = {
                 resolve('success');
             }
             srcEle.onerror = function() {
-                resolve('error');
+                reject('error');
             }
         });
         return promsie;
