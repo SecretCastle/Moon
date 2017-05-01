@@ -71,14 +71,14 @@
                 this.isTap  = false;
             },
             touchFn(){
-                if(this.touchMoveX < -150){  // right
+                if(this.touchMoveX < -100){  // right
                     if(this.currentIndex < this.imgLength -1){
                         this.currentIndex += 1;    
                     }else{
                         this.currentIndex = 0;
                     }
                     this.moveSlideFn();
-                }else if(this.touchMoveX > 150){ //left
+                }else if(this.touchMoveX > 100){ //left
                     if(this.currentIndex < this.imgLength -1 && this.currentIndex !== 0){
                         this.currentIndex -= 1;    
                     }else{

@@ -1,7 +1,7 @@
 <template>
     <div class="show_item" @click="detail">
         <div class="item_pic">
-            <img src="../../../assets/default.jpg" :data-img="dataDetail.thumbs.large_thumb"/>
+            <img src="../../../assets/default.jpg"/>
         </div>
         <div class="item_wrap">
             <div class="item_title">{{dataDetail.title}}</div>
@@ -12,6 +12,8 @@
     </div>
 </template>
 <script>
+    import Public from '../../../utils/public';
+
     export default {
         data(){
             return {
@@ -21,8 +23,14 @@
         props:{
             dataDetail:Object
         },
-        updated(){
+        created(){
+            Public.preImgLoad(this.dataDetail.thumbs.large_thumb).then((img)=>{
+                if(typeof img === "string"){
+                    this.$el.children[0].children[0].src = img;
+                }
+            }).catch((err)=>{
 
+            });
         },
         methods:{
             detail(){

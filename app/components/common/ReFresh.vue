@@ -70,7 +70,7 @@
             moveFn(){
                 switch(this.freshType){
                     case 1:
-                        if(this.isMoveY < 80){
+                        if(this.isMoveY < 80 && this.isMoveY > 0 && this.scrollFn() === 0){
                             this.$el.style.transform = `translateY(${this.isMoveY}px)`;
                             this.$el.style.transition = 'transform 100ms ease-out';
                         }
@@ -94,9 +94,13 @@
                 }
                 
             },
-            scrollFn(){
-                console.log("这是监听scroll方法");
+            scrollFn() {
+                this.scroll = document.body.scrollTop;
+                return this.scroll;
             }
+        },
+        mounted(){
+            window.addEventListener('scroll', this.scrollFn);
         }
     }
 </script>

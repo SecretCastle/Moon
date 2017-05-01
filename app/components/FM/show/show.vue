@@ -33,7 +33,6 @@
                 this.dataLength = res.data.total;
                 this.nowSize = res.data.data.length;
                 this.data = res.data.data;
-                console.log('初始化加载');
             }).catch((err)=>{
                 console.log(err);
             });
@@ -50,13 +49,10 @@
                 if(this.dataLength > this.nowSize){
                     this.indexPage += 1;
                     axios.get(`/categories/${this.typeid}/channels/order/bydefault/0/attr/${this.id}/curpage/${this.indexPage}/pagesize/${this.startSize}`).then((res)=>{
-                        console.log("refresh完成");
                         this.data = this.data.concat(res.data.data);
                         this.nowSize += res.data.data.length;
                         this.$refs.scroller.onFresh();
-                    }).catch((err)=>{
-                        console.log(err);
-                        console.log("refresh失败");
+                    }).catch((err)=>{       
                         this.$refs.scroller.onFresh();
                     });
                 }else {

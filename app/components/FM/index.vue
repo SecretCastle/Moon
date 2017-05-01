@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-        <swiper-box :img-data="imgData" :delay-time="4000" :is-delay="true"></swiper-box>
+        <swiper-box :img-data="imgData" :delay-time="4000" :is-delay="false"></swiper-box>
         <div class="type_class">
             <router-link to="/categories" class="iner">分类</router-link>
         </div>
