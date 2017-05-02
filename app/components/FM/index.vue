@@ -1,6 +1,7 @@
 <template>
     <div class="wrap">
         <swiper-box :img-data="imgData" :delay-time="4000" :is-delay="false"></swiper-box>
+        <rec-view v-for = "item in recommendData" :rec-data="item" :key ="item.section_id" ></rec-view>
         <div class="type_class">
             <router-link to="/categories" class="iner">分类</router-link>
         </div>
@@ -10,23 +11,27 @@
 <script>
    import Swiper from '../common/Swiper';
    import List from '../common/List';
+   import RecView from './recommend/recommend';
    import axios from 'axios';
    export default {
        data(){
             return {
                 imgData:{},
-                recommendData:[]
+                recommendData:[],
+                liver:[]
             }
        },
         components:{
             "swiper-box":Swiper,
-            "list-box":List
+            "list-box":List,
+            'rec-view':RecView
         },
         created(){
             axios.get('/section/0').then((res)=>{
                 if(res){
                     this.imgData = res.data.data.shift();
-                    this.recommendData = res.data.data.splice(0,1);
+                    this.liver = res.data.data.splice(0,1);
+                    this.recommendData = res.data.data;
                 }
             }).catch((err)=>{
                 console.log(err);
