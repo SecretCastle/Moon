@@ -2,7 +2,7 @@ var path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './app/main.js',
+    entry: './app2/main.js', //看app或app2 ，这里改下就行
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
