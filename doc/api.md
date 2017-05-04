@@ -1,18 +1,31 @@
 # 移动端api
 
+
+##介绍
+
+点播的内容的层次结构是：Category -> OnDemandChannel -> OnDemandProgram。
+
+category_id 分类id (如521 => 小说)
+channel_id 指定电台id (如211852 => 人民的名义) 
+program_id 具体节目id (如6850879 => 人民的名义001)
+
 ## 目录
 - [deviceid和userid](#deviceid和userid)
 - [API准备](#api准备)
 	- [服务器](#服务器)
 	- [api使用](#api使用)
-		- [获取分类](#获取分类)
-		- [点击某分类](#点击某分类)
-		- [点击分类下具体细分类](#点击某具体分类)
-		- [点击某一个产品](#点击某一个产品如id为174180下的列表)
-		- [点击播放](#点击播放)
-		- [获取首页推荐banner](#获取首页推荐banner)
-		- [获取某个分类下banner](#获取某个分类下banner)
-		- [搜索](#搜索)
+		-[获取分类](#获取分类)
+		-[获取分类下的属性](#获取分类下的属性)
+		-[获取分类下的所有电台或直播电台，并按属性筛选](#获取分类下的所有电台或直播电台，并按属性筛选)
+		-[获取指定分类下的所有电台](#获取指定分类下的所有电台)
+		-[获取指定点播电台信息](#获取指定点播电台信息)
+		-[获取点播电台下的点播节目](#获取点播电台下的点播节目)
+		-[获取点播节目](#获取点播节目)
+		-[获取指定点播电台的推荐电台列表](#获取指定点播电台的推荐电台列表)
+		-[点击播放](#点击播放)
+		-[获取点播分类推荐](#获取点播分类推荐)
+		-[获取直播banner内容(可能移动端没用)](#获取直播banner内容)
+		-[搜索](#搜索)
 	- [用户](#用户)
 	- [Http请求部分](#Http请求部分)
 
@@ -39,469 +52,53 @@ http://search.qingting.fm 搜索服务器
 
 #### 获取分类
 ```
-/v6/media/categories 
+/v6/media/categories
 
 返回的参数
 {
-	"errorno": 0,
-	"errormsg": "",
-	"data": [{
-		"id": 521,
-		"name": "小说",
-		"sequence": 1,
-		"section_id": 208,
-		"type": "category"
-	}, {
-		"id": 3629,
-		"name": "畅销小说",
-		"sequence": 2,
-		"section_id": 1115,
-		"type": "category"
-	}, {
-		"id": 3617,
-		"name": "精品内容",
-		"sequence": 3,
-		"section_id": 1011,
-		"type": "category"
-	}, {
-		"id": 523,
-		"name": "音乐",
-		"sequence": 4,
-		"section_id": 139,
-		"type": "category"
-	}, {
-		"id": 545,
-		"name": "头条",
-		"sequence": 6,
-		"section_id": 199,
-		"type": "category"
-	}, {
-		"id": 527,
-		"name": "相声小品",
-		"sequence": 7,
-		"section_id": 209,
-		"type": "category"
-	}, {
-		"id": 3251,
-		"name": "脱口秀",
-		"sequence": 8,
-		"section_id": 200,
-		"type": "category"
-	}, {
-		"id": 529,
-		"name": "情感",
-		"sequence": 9,
-		"section_id": 82,
-		"type": "category"
-	}, {
-		"id": 539,
-		"name": "健康",
-		"sequence": 10,
-		"section_id": 107,
-		"type": "category"
-	}, {
-		"id": 531,
-		"name": "历史",
-		"sequence": 12,
-		"section_id": 213,
-		"type": "category"
-	}, {
-		"id": 1599,
-		"name": "儿童",
-		"sequence": 13,
-		"section_id": 214,
-		"type": "category"
-	}, {
-		"id": 547,
-		"name": "娱乐",
-		"sequence": 14,
-		"section_id": 210,
-		"type": "category"
-	}, {
-		"id": 3330,
-		"name": "女性",
-		"sequence": 15,
-		"section_id": 204,
-		"type": "category"
-	}, {
-		"id": 3252,
-		"name": "搞笑",
-		"sequence": 16,
-		"section_id": 201,
-		"type": "category"
-	}, {
-		"id": 537,
-		"name": "教育",
-		"sequence": 17,
-		"section_id": 116,
-		"type": "category"
-	}, {
-		"id": 1585,
-		"name": "公开课",
-		"sequence": 19,
-		"section_id": 74,
-		"type": "category"
-	}, {
-		"id": 3613,
-		"name": "文化",
-		"sequence": 20,
-		"section_id": 893,
-		"type": "category"
-	}, {
-		"id": 3496,
-		"name": "评书",
-		"sequence": 21,
-		"section_id": 515,
-		"type": "category"
-	}, {
-		"id": 3276,
-		"name": "戏曲",
-		"sequence": 22,
-		"section_id": 217,
-		"type": "category"
-	}, {
-		"id": 533,
-		"name": "财经",
-		"sequence": 23,
-		"section_id": 215,
-		"type": "category"
-	}, {
-		"id": 535,
-		"name": "科技",
-		"sequence": 24,
-		"section_id": 216,
-		"type": "category"
-	}, {
-		"id": 3385,
-		"name": "汽车",
-		"sequence": 25,
-		"section_id": 207,
-		"type": "category"
-	}, {
-		"id": 3238,
-		"name": "体育",
-		"sequence": 26,
-		"section_id": 203,
-		"type": "category"
-	}, {
-		"id": 1737,
-		"name": "校园",
-		"sequence": 27,
-		"section_id": 166,
-		"type": "category"
-	}, {
-		"id": 3427,
-		"name": "游戏动漫",
-		"sequence": 28,
-		"section_id": 205,
-		"type": "category"
-	}, {
-		"id": 3442,
-		"name": "广播剧",
-		"sequence": 29,
-		"section_id": 206,
-		"type": "category"
-	}, {
-		"id": 3588,
-		"name": "影视",
-		"sequence": 31,
-		"section_id": 569,
-		"type": "category"
-	}, {
-		"id": 3597,
-		"name": "旅游",
-		"sequence": 35,
-		"section_id": 674,
-		"type": "category"
-	}, {
-		"id": 3599,
-		"name": "自媒体",
-		"sequence": 37,
-		"section_id": 732,
-		"type": "category"
-	}, {
-		"id": 3600,
-		"name": "品牌电台",
-		"sequence": 38,
-		"section_id": 751,
-		"type": "category"
-	}, {
-		"id": 3605,
-		"name": "时尚",
-		"sequence": 40,
-		"section_id": 818,
-		"type": "category"
-	}, {
-		"id": 3608,
-		"name": "中国之声",
-		"sequence": 42,
-		"section_id": 837,
-		"type": "category"
-	}, {
-		"id": 3631,
-		"name": "会员专区",
-		"sequence": 53,
-		"section_id": 1142,
-		"type": "category"
-	}]
-}
+    errorno: 0,
+    errormsg: "",
+    data: [
+        {
+            id: 521,
+            name: "小说",
+            sequence: 1,
+            section_id: 208,
+            type: "category"
+        },
+        ...
+    ]
+  }
 
 ```
 
-#### 点击某分类
+#### 获取分类下的属性
 ```
-/v6/media/categories/521
+/v6/media/categories/#{category_id}
 
 返回参数
 {
-    "errorno": 0,
-    "errormsg": "",
-    "data": [
-        {
-            "id": 32,
-            "name": "分类",
-            "values": [
-                {
-                    "id": 2761,
-                    "name": "评书名家",
-                    "sequence": 1
-                },
-                {
-                    "id": 2743,
-                    "name": "青春校园",
-                    "sequence": 1
-                },
-                {
-                    "id": 2742,
-                    "name": "穿越架空",
-                    "sequence": 1
-                },
-                {
-                    "id": 3182,
-                    "name": "推理刑侦",
-                    "sequence": 1
-                },
-                {
-                    "id": 2762,
-                    "name": "广播剧",
-                    "sequence": 1
-                },
-                {
-                    "id": 2745,
-                    "name": "社科经管",
-                    "sequence": 1
-                },
-                {
-                    "id": 2744,
-                    "name": "武侠仙侠",
-                    "sequence": 1
-                },
-                {
-                    "id": 517,
-                    "name": "悬疑探险",
-                    "sequence": 2
-                },
-                {
-                    "id": 511,
-                    "name": "惊悚灵异",
-                    "sequence": 3
-                },
-                {
-                    "id": 508,
-                    "name": "玄幻超能",
-                    "sequence": 4
-                },
-                {
-                    "id": 518,
-                    "name": "古风言情",
-                    "sequence": 6
-                },
-                {
-                    "id": 509,
-                    "name": "现代言情",
-                    "sequence": 8
-                },
-                {
-                    "id": 510,
-                    "name": "都市现代",
-                    "sequence": 10
-                },
-                {
-                    "id": 520,
-                    "name": "官商职场",
-                    "sequence": 11
-                },
-                {
-                    "id": 516,
-                    "name": "历史军事",
-                    "sequence": 12
-                },
-                {
-                    "id": 513,
-                    "name": "文学小说",
-                    "sequence": 13
-                }
-            ]
-        },
-        {
-            "id": 33,
-            "name": "热门作者",
-            "values": [
-                {
-                    "id": 2748,
-                    "name": "桐华",
-                    "sequence": 1
-                },
-                {
-                    "id": 2070,
-                    "name": "天蚕土豆",
-                    "sequence": 1
-                },
-                {
-                    "id": 2747,
-                    "name": "唐七公子",
-                    "sequence": 1
-                },
-                {
-                    "id": 2746,
-                    "name": "Vivibear",
-                    "sequence": 1
-                },
-                {
-                    "id": 2109,
-                    "name": "蔡骏",
-                    "sequence": 1
-                },
-                {
-                    "id": 2071,
-                    "name": "我吃西红柿",
-                    "sequence": 1
-                },
-                {
-                    "id": 2107,
-                    "name": "天下霸唱",
-                    "sequence": 1
-                },
-                {
-                    "id": 2147,
-                    "name": "南派三叔",
-                    "sequence": 1
-                },
-                {
-                    "id": 2069,
-                    "name": "江南",
-                    "sequence": 1
-                },
-                {
-                    "id": 2094,
-                    "name": "孔二狗",
-                    "sequence": 1
-                },
-                {
-                    "id": 2072,
-                    "name": "唐家三少",
-                    "sequence": 1
-                },
-                {
-                    "id": 2749,
-                    "name": "严歌苓",
-                    "sequence": 1
-                }
-            ]
-        },
-        {
-            "id": 171,
-            "name": "标签",
-            "values": [
-                {
-                    "id": 2386,
-                    "name": "热门排行",
-                    "sequence": 1
-                },
-                {
-                    "id": 3291,
-                    "name": "主妇",
-                    "sequence": 1
-                },
-                {
-                    "id": 2045,
-                    "name": "总裁",
-                    "sequence": 1
-                },
-                {
-                    "id": 2741,
-                    "name": "盗墓",
-                    "sequence": 1
-                },
-                {
-                    "id": 2127,
-                    "name": "影视原著",
-                    "sequence": 1
-                }
-            ]
-        },
-        {
-            "id": 187,
-            "name": "属性",
-            "values": [
-                {
-                    "id": 3258,
-                    "name": "限时免费",
-                    "sequence": 1
-                },
-                {
-                    "id": 2135,
-                    "name": "合集",
-                    "sequence": 1
-                },
-                {
-                    "id": 2079,
-                    "name": "蜻蜓FM出品",
-                    "sequence": 1
-                },
-                {
-                    "id": 2126,
-                    "name": "原创",
-                    "sequence": 1
-                },
-                {
-                    "id": 2174,
-                    "name": "火爆完本",
-                    "sequence": 1
-                },
-                {
-                    "id": 2125,
-                    "name": "出版",
-                    "sequence": 1
-                },
-                {
-                    "id": 2911,
-                    "name": "付费精品",
-                    "sequence": 14
-                }
-            ]
-        },
-        {
-            "id": 265,
-            "name": "性别",
-            "values": [
-                {
-                    "id": 3289,
-                    "name": "男频",
-                    "sequence": 1
-                },
-                {
-                    "id": 3290,
-                    "name": "女频",
-                    "sequence": 1
-                }
-            ]
-        }
-    ]
+	errorno: 0,
+	errormsg: "",
+	data: [
+		{
+			id: 21,
+			name: "地域",
+			values: [
+				{
+					id: 449,
+					name: "国外",
+					sequence: 1
+				},
+				...
+			]
+		},
+		...
+	]
 }
 ```
 
-#### 点击某具体分类
+#### 获取分类下的所有电台或直播电台，并按属性筛选
 ```
 
 {
@@ -570,7 +167,7 @@ http://search.qingting.fm 搜索服务器
 ```
 
 
-#### 点击某分类，获得分类（此为获得521下对前30个）
+#### 获取指定分类下的所有电台
 ```
 /v6/media/categories/521/channels/order/0/curpage/1/pagesize/30 
 
@@ -628,9 +225,95 @@ http://search.qingting.fm 搜索服务器
 	}]
 }
 ```
-#### 点击某一个产品如id为174180下的列表
+#### 获取指定点播电台信息
 ```
-/v6/media/channelondemands/211852/programs/order/0/curpage/1/pagesize/50?user_id=40e6c8b3a2f0074ca0fe7bc308db303d
+/v6/media/channelondemands/#{channel_id}
+
+返回数据
+
+{   
+    data: {
+      "auto_play": 0,
+      "category_id": 521,
+      "chatgroup_id": 0,
+      "description": "江烁和秦一恒是一对神秘的炒房客，他们低价购买远近闻名的凶宅，经过驱鬼辟邪之后，再转手把房子卖出去，每一次都能大赚一笔，生意出奇地好！不料，一场巨大阴谋悄悄在他们身边酝酿，各种凶险无比的凶宅不断出现，他们发现自己已经很难搞定，几次濒临死亡线。此时，他们发现，自己被套进一张杀机四伏的网内！",
+      "detail": {
+           "activitycount": "8517",
+           "authors": [
+              {
+                 "id": 11583,
+                 "qq_id": "",
+                 "qq_name": "",
+                 "thumb": "",
+                 "username": "贰13",
+                 "weibo_id": "",
+                 "weibo_name": ""
+              }
+           ],
+           "broadcasters": [
+              {
+                 "id": 10458,
+                 "qq_id": "",
+                 "qq_name": "",
+                 "thumb": "",
+                 "username": "纪涵邦",
+                 "weibo_id": "",
+                 "weibo_name": ""
+              },
+              {
+                 "id": 11490,
+                 "qq_id": "",
+                 "qq_name": "",
+                 "thumb": "",
+                 "username": "佟掌柜",
+                 "weibo_id": "",
+                 "weibo_name": ""
+              }
+            ],
+            "favcount": "18.0万",
+            "playcount": "4013.0万",
+            "podcasters": null,
+            "program_count": 125
+       },
+       "id": 88352,
+       "is_finished": 1,
+       "item_type": 0,
+       "latest_program": "凶宅笔记第三部_050",
+       "link_id": 0,
+       "ordered": 1,
+       "purchase_item": null,
+       "raw_title": "凶宅笔记",
+       "record_enabled": 0,
+       "sale_props": "",
+       "sale_status": "free",
+       "sale_type": 0,
+       "star": 6,
+       "status": 99,
+       "tags": "出版,合集,女频,惊悚灵异,男频,鸿达以太",
+       "thumbs": {
+             "200_thumb": "http://pic.qingting.fm/2015/0325/20150325144341643.jpg!200",
+             "400_thumb": "http://pic.qingting.fm/2015/0325/20150325144341643.jpg!400",
+             "800_thumb": "http://pic.qingting.fm/2015/0325/20150325144341643.jpg!800",
+             "large_thumb": "http://pic.qingting.fm/2015/0325/20150325144341643.jpg!large",
+             "medium_thumb": "http://pic.qingting.fm/2015/0325/20150325144341643.jpg!medium",
+             "small_thumb": "http://pic.qingting.fm/2015/0325/20150325144341643.jpg!small"
+       },
+       "title": "凶宅笔记全三部",
+       "type": "channel_ondemand",
+       "update_time": "2014-12-15 17:18:06",
+       "view_type": 1,
+       "weburl": "http://m.qingting.fm/vchannels/88352"
+    },
+    errormsg: "",
+    errorno:
+  }
+
+```
+
+#### 获取点播电台下的点播节目
+```
+/v6/media/channelondemands/211852/programs/order/0/curpage/1/pagesize/50  获取自定义顺序数据URL
+/v6/media/channelondemands/#{channel_id}/programs/curpage/#{curpage}/pagesize/30  获取指定电台的节目列表
 
 返回参数 （注意"sale_status参数： free为免费，unpaid为付费"）
 {
@@ -671,658 +354,224 @@ http://search.qingting.fm 搜索服务器
 }
 
 ```
+#### 获取点播节目
+```
+/v6/media/programs/2112799 #{program_id}
+
+返回结果 具体节目
+
+{
+    "errorno": 0,
+    "errormsg": "",
+    "data": {
+       "chatgroup_id": 0,
+       "description": "",
+       "detail": {
+          "authors": [],
+          "broadcasters": []
+       },
+       "duration": 1180.36,
+       "id": 2112799,
+       "mediainfo": {
+           "bitrates_url": [
+               {
+                    "bitrate": 24,
+                    "file_path": "vod/00/00/0000000000000000000024714128_24.m4a?u=525&channelId=&programId=2112799",
+                    "qetag": "Fm2nx3_1N1ezKbkD-g0hHGF7vfnF"
+               }
+           ],        
+           "duration": 1180.36,
+           "id": 3132312
+       },
+       "original_fee": 0,
+       "price": 0,
+       "redirect_url": "",
+       "sale_status": "free",
+       "sequence": 1,
+       "thumbs": null,
+       "title": "凶宅笔记第一部_001",
+       "type": "program_ondemand",
+       "update_time": "2016-11-14 10:53:53",
+       "weburl": "http://m.qingting.fm/vchannels/2112799/programs/2112799"
+    }
+  }
+```
+#### 获取指定点播电台的推荐电台列表
+```
+/v6/media/channelondemands/#{channel_id}/recommends/curpage/#{curpage}/pagesize/#{pagesize}
+
+返回数据
+{
+  data: [
+     {
+        "auto_play": 0,
+        "category_id": 521,
+        "description": "所谓的凶宅就是曾经里面有人横死过的房子。这种死亡的人传说中因为阳寿并没有过完，所以死的会很不甘心。凶宅也会因为他们的作祟而价格狂跌。而我，就是一个专门买卖凶宅，除鬼后倒卖的生意人……",
+        "detail": {},
+        "id": 85182,
+        "is_finished": 1,
+        "latest_program": "凶宅笔记001",
+        "playcount": "2396.3万",
+        "sale_props": "",
+        "sale_type": 0,
+        "score": 10,
+        "thumbs": {
+             "200_thumb": "http://pic.qingting.fm/2014/1126/20141126052926603.jpg!200",
+             "400_thumb": "http://pic.qingting.fm/2014/1126/20141126052926603.jpg!400",
+             "800_thumb": "http://pic.qingting.fm/2014/1126/20141126052926603.jpg!800",
+             "large_thumb": "http://pic.qingting.fm/2014/1126/20141126052926603.jpg!large",
+             "medium_thumb": "http://pic.qingting.fm/2014/1126/20141126052926603.jpg!medium",
+             "small_thumb": "http://pic.qingting.fm/2014/1126/20141126052926603.jpg!small"
+        },
+        "title": "凶宅笔记第二部",
+        "type": "channel_ondemand",
+        "update_time": "2014-08-13 16:56:18",
+        "weburl": "http://m.qingting.fm/vchannels/85182"
+    }
+    ...
+  ],
+  "errcode": 0,
+  "errmsg": null,
+  "errorno": 0,
+  "page": 1,
+  "pagesize": 30,
+  "total": 249
+```
+
 #### 点击播放
 ```
 /vod/00/00/0000000000000000000024139635_64.m4a
 ```
-#### 获取首页推荐banner
+#### 获取点播分类推荐
+
+精选推荐
+
 ```
-/v6/media/recommends/guides/section/0
+ 精选推荐section_id为0
+
+```
+
+```
+/v6/media/recommends/guides/section/#{section_id}
 
 返回参数
 {
-	"errormsg": "",
-   "errorno": 0,
-   "data":[
-		   {
-		    "recommends": [
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 2264,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "lpW4p5iOqJz7VM_Rjr9-9k1WDwCF",
-		                            "file_path": "m4a/58f85fe57cb8917260d75844_7178804_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "lsjVyXoxAtXomOU869gL5ZNZYz6D",
-		                            "file_path": "m4a/58f85fe57cb8917260d75844_7178804_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 7178804
-		                },
-		                "duration": 2264,
-		                "id": 6974453,
-		                "update_time": "2017-04-21 08:00:00",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 6,
-		                "sequence": 0,
-		                "title": "170414期：攻陷好莱坞",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "晓说 2017",
-		                "parent_id": 212192,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 3251
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 2001,
-		            "thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg",
-		            "object_id": 6974453,
-		            "sequence": 1,
-		            "title": "攻陷好莱坞",
-		            "update_time": "2017-04-21 00:00:38",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 981,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "ltDxntGfE1ew7snmcHAArZQJJ_fe",
-		                            "file_path": "m4a/568f82617b28aa1a6aff82d6_4656928_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "FnCFQ9hLaJ6Tdrl_w4lrTJFwrCyd",
-		                            "file_path": "m4a/568f82617b28aa1a6aff82d6_4656928_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 4656928
-		                },
-		                "duration": 981,
-		                "id": 3873391,
-		                "update_time": "2016-01-08 17:42:25",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 10,
-		                "sequence": 0,
-		                "title": "龙血战神 第1集",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "龙血战神",
-		                "parent_id": 139706,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 521
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 2002,
-		            "thumb": "http://pic.qingting.fm/2017/0417/20170417113627124.jpg",
-		            "object_id": 3873391,
-		            "sequence": 2,
-		            "title": "吞食神龙精血，成就无上神尊",
-		            "update_time": "2017-04-22 11:48:34",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0417/20170417113627124.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0417/20170417113627124.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0417/20170417113627124.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 1882,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "lr9Ar2Kfni4fBuuruopNQTdQPKhH",
-		                            "file_path": "m4a/58aa95e67cb89166563b3b43_6818718_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "ll_C9l2F0LSAcOsBQPgMWs0I6v05",
-		                            "file_path": "m4a/58aa95e67cb89166563b3b43_6818718_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 6818718
-		                },
-		                "duration": 1882,
-		                "id": 6547503,
-		                "update_time": "2017-03-24 15:47:46",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 10,
-		                "sequence": 0,
-		                "title": "《童子尿煮鸡蛋》",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "郭德纲于谦相声精选",
-		                "parent_id": 25888,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 527
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 2003,
-		            "thumb": "http://pic.qingting.fm/2017/0421/20170421162111186.jpg",
-		            "object_id": 6547503,
-		            "sequence": 3,
-		            "title": "于谦的祖父，5岁就死了",
-		            "update_time": "2017-04-22 11:48:20",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0421/20170421162111186.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0421/20170421162111186.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0421/20170421162111186.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 1266,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "FlKClCXHxrx0CxkyckSswmMlC0y2",
-		                            "file_path": "vod/00/00/0000000000000000000024429040_24.m4a",
-		                            "bitrate": 24
-		                        }
-		                    ],
-		                    "id": 3002335
-		                },
-		                "duration": 1266,
-		                "id": 2144092,
-		                "update_time": "2014-10-22 10:51:18",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 10,
-		                "sequence": 0,
-		                "title": "小马宝莉 第01集 友谊的魔力（上）",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "小马宝莉",
-		                "parent_id": 80360,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 1599
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 2004,
-		            "thumb": "http://pic.qingting.fm/2017/0412/20170412114108322.jpg",
-		            "object_id": 2144092,
-		            "sequence": 4,
-		            "title": "关于友谊的魔法动画片",
-		            "update_time": "2017-04-22 11:48:09",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0412/20170412114108322.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0412/20170412114108322.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0412/20170412114108322.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "url": "https://sss.qingting.fm/ipay/?activity_id=58f9ad7acfc6cc4e81e8282b",
-		                "title": "全民读书日，精品限时5折！",
-		                "id": 1133,
-		                "network": "",
-		                "type": "activity",
-		                "thumb": "http://pic.qingting.fm/2017/0421/20170421204353958.jpg",
-		                "description": "高值精品，只有2天，5折疯抢！不点开你可能就错过了一个亿"
-		            },
-		            "parent_info": null,
-		            "id": 2005,
-		            "thumb": "http://pic.qingting.fm/2017/0421/20170421204353958.jpg",
-		            "object_id": 1133,
-		            "sequence": 5,
-		            "title": "全民读书日，精品限时5折！",
-		            "update_time": "2017-04-22 11:48:45",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0421/20170421204353958.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0421/20170421204353958.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0421/20170421204353958.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 4638,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "lk2sNpoxEVYITOtgeTZe7XT7ijBt",
-		                            "file_path": "m4a/58809a2d7cb891397863dfc8_6684770_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "ltFi4K8WTk3H0OPPhWabac4HHIVQ",
-		                            "file_path": "m4a/58809a2d7cb891397863dfc8_6684770_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 6684770
-		                },
-		                "duration": 4638,
-		                "id": 6343390,
-		                "update_time": "2017-01-13 12:10:42",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 6,
-		                "sequence": 0,
-		                "title": "【红楼梦】第一回 甄士隐梦幻识通灵 贾雨村风尘怀闺秀（1）",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "蒋勋人文经典合集全八部【限时特惠】 ",
-		                "parent_id": 205768,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 3617
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 2006,
-		            "thumb": "http://pic.qingting.fm/2017/0407/20170407113458793.jpg",
-		            "object_id": 6343390,
-		            "sequence": 6,
-		            "title": "从这里开始，爱上文学",
-		            "update_time": "2017-04-22 11:48:42",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0407/20170407113458793.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0407/20170407113458793.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0407/20170407113458793.jpg!large"
-		            },
-		            "sub_title": ""
-		        }
-		    ],
-		    "sequence": 0,
-		    "brief_name": "",
-		    "section_id": 2,
-		    "name": "banner",
-		    "redirect": null
-		}
-   ] 
-}
-
-```
-
-#### 获取某个分类下banner
-```
-注意：section_id 通过categories获取
-/v6/media/recommends/guides/section/section_id
-
-返回参数
-{
-	"errormsg": "",
     "errorno": 0,
-    "data":[
-    		{
-		    "recommends": [
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 1387,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "lpomHdBfum7pdWg8V8hD7-J0Yrug",
-		                            "file_path": "m4a/58df0a0b7cb8917264803bc3_7070565_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "FvvPVMTg0Xpyskr_av1nPrp_rImA",
-		                            "file_path": "m4a/58df0a0b7cb8917264803bc3_7070565_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 7070565
-		                },
-		                "duration": 1387,
-		                "id": 6850879,
-		                "update_time": "2017-04-01 10:05:14",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 6,
-		                "sequence": 0,
-		                "title": "人民的名义001",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "人民的名义",
-		                "parent_id": 211852,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 3629
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 1116001,
-		            "thumb": "http://pic.qingting.fm/2017/0407/20170407144821519.jpg",
-		            "object_id": 6850879,
-		            "sequence": 1,
-		            "title": "最新完结！史上尺度最大的反腐作品",
-		            "update_time": "2017-04-20 10:46:52",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0407/20170407144821519.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0407/20170407144821519.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0407/20170407144821519.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 1060,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "loodmy_P7LZWQeIrOTrew1hPrbmH",
-		                            "file_path": "m4a/5819b9947cb891101952bd62_6210039_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "Foq_VgW3Kg6hGaLaU-YfyLG5fV3A",
-		                            "file_path": "m4a/5819b9947cb891101952bd62_6210039_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 6210039
-		                },
-		                "duration": 1060,
-		                "id": 5775458,
-		                "update_time": "2016-11-02 18:01:56",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 6,
-		                "sequence": 0,
-		                "title": "【4月20日加入付费精品】紫阳 001",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "紫阳",
-		                "parent_id": 192542,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 3629
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 1116002,
-		            "thumb": "http://pic.qingting.fm/goods/2017/04/21/aa70157f82d56d43d96666759a6fc137.jpg",
-		            "object_id": 5775458,
-		            "sequence": 2,
-		            "title": "五胡乱华，仙人下山定乾坤",
-		            "update_time": "2017-04-21 10:52:36",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/goods/2017/04/21/aa70157f82d56d43d96666759a6fc137.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/goods/2017/04/21/aa70157f82d56d43d96666759a6fc137.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/goods/2017/04/21/aa70157f82d56d43d96666759a6fc137.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 998,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "lkJRAyjNs7bLsduzdyHOeJlcvGD6",
-		                            "file_path": "m4a/56fb79897b28aa5826244475_4947661_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "FjG4rBOMMx4C-rOGwQ9l1uoNEXQ4",
-		                            "file_path": "m4a/56fb79897b28aa5826244475_4947661_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 4947661
-		                },
-		                "duration": 998,
-		                "id": 4178962,
-		                "update_time": "2016-06-14 16:56:44",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 6,
-		                "sequence": 0,
-		                "title": "黄金瞳 第1集",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "黄金瞳",
-		                "parent_id": 147754,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 3629
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 1116003,
-		            "thumb": "http://pic.qingting.fm/2017/0421/20170421110755597.jpg",
-		            "object_id": 4178962,
-		            "sequence": 3,
-		            "title": "小职员双眼异变，走上人生巅峰",
-		            "update_time": "2017-04-21 11:07:55",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0421/20170421110755597.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0421/20170421110755597.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0421/20170421110755597.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 1261,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "lrw4IZSqE8CDtAXOF1wYXnGfEuyv",
-		                            "file_path": "m4a/588025b47cb891397863daee_6680989_64.m4a",
-		                            "bitrate": 62
-		                        },
-		                        {
-		                            "qetag": "FrV8_m_J-iQn7Fla1Et7UWZuRXTp",
-		                            "file_path": "m4a/588025b47cb891397863daee_6680989_24.m4a",
-		                            "bitrate": 22
-		                        }
-		                    ],
-		                    "id": 6680989
-		                },
-		                "duration": 1261,
-		                "id": 6378848,
-		                "update_time": "2017-01-19 10:38:17",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 6,
-		                "sequence": 0,
-		                "title": "超级道士在都市第一集（粉丝群：524878677）",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "超级道士在都市",
-		                "parent_id": 206089,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 3629
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 1116004,
-		            "thumb": "http://pic.qingting.fm/2017/0412/20170412142727796.jpg",
-		            "object_id": 6378848,
-		            "sequence": 4,
-		            "title": "道门天才演绎别样校园修真之路！",
-		            "update_time": "2017-04-12 14:27:28",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0412/20170412142727796.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0412/20170412142727796.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0412/20170412142727796.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "detail": {},
-		                "mediainfo": {
-		                    "duration": 65,
-		                    "bitrates_url": [
-		                        {
-		                            "qetag": "FhYfQA7jU38rxmw8UMCHd9p7OS4f",
-		                            "file_path": "vod/00/00/0000000000000000000026093193_24.m4a",
-		                            "bitrate": 24
-		                        },
-		                        {
-		                            "qetag": "Fp4NpFKAjfqWIc1uJiXCTuvq09zg",
-		                            "file_path": "vod/00/00/0000000000000000000026093193_64.m4a",
-		                            "bitrate": 64
-		                        }
-		                    ],
-		                    "id": 3969478
-		                },
-		                "duration": 65,
-		                "id": 3145606,
-		                "update_time": "2015-08-06 14:35:27",
-		                "redirect_url": "",
-		                "sale_status": "",
-		                "type": "program_ondemand",
-		                "channel_star": 0,
-		                "sequence": 0,
-		                "title": "主妇也疯狂 预告",
-		                "thumbs": null,
-		                "original_fee": 0,
-		                "price": 0,
-		                "chatgroup_id": 0,
-		                "description": ""
-		            },
-		            "parent_info": {
-		                "parent_name": "主妇也疯狂（完本）",
-		                "parent_id": 114926,
-		                "parent_extra": {
-		                    "tag": "",
-		                    "category_id": 3629
-		                },
-		                "parent_type": "channel_ondemand"
-		            },
-		            "id": 1116005,
-		            "thumb": "http://pic.qingting.fm/2017/0411/20170411113324169.jpg",
-		            "object_id": 3145606,
-		            "sequence": 5,
-		            "title": "婚姻危机 看黄脸婆怎样疯狂逆袭",
-		            "update_time": "2017-04-21 16:43:58",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0411/20170411113324169.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0411/20170411113324169.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0411/20170411113324169.jpg!large"
-		            },
-		            "sub_title": ""
-		        },
-		        {
-		            "detail": {
-		                "url": "https://sss.qingting.fm/ipay/#/activity/58f868fb4379c52c2b135915",
-		                "title": "读书节钜惠：畅销小说半价起！",
-		                "id": 1126,
-		                "network": "",
-		                "type": "activity",
-		                "thumb": "http://pic.qingting.fm/2017/0421/20170421141530447.jpg",
-		                "description": "4.23国际读书节，蜻蜓邀您共品书香。错过今天，再等一年！"
-		            },
-		            "parent_info": null,
-		            "id": 1116006,
-		            "thumb": "http://pic.qingting.fm/2017/0421/20170421141530447.jpg",
-		            "object_id": 1126,
-		            "sequence": 6,
-		            "title": "读书节钜惠：畅销小说半价起！",
-		            "update_time": "2017-04-21 14:15:59",
-		            "thumbs": {
-		                "medium_thumb": "http://pic.qingting.fm/2017/0421/20170421141530447.jpg!medium",
-		                "small_thumb": "http://pic.qingting.fm/2017/0421/20170421141530447.jpg!small",
-		                "large_thumb": "http://pic.qingting.fm/2017/0421/20170421141530447.jpg!large"
-		            },
-		            "sub_title": ""
-		        }
-		    ],
-		    "sequence": 0,
-		    "brief_name": "",
-		    "section_id": 1116,
-		    "name": "banner",
-		    "redirect": null
-		}
-    ]
-}
+    "errormsg": "",
+    "data": [
+     {
+       "brief_name": "读诗",
+       "name": "读懂一首诗",
+       "recommends": [
+        {
+              "detail": {
+                  "channel_star": 6,
+                  "chatgroup_id": 0,
+                  "description": "",
+                  "detail": {},
+                  "duration": 2264,
+                  "id": 6974453,
+                  "mediainfo": {},
+                  "original_fee": 0,
+                  "price": 0,
+                  "redirect_url": "",
+                  "sale_status": "",
+                  "sequence": 0,
+                  "thumbs": null,
+                  "title": "170414期：攻陷好莱坞",
+                  "type": "program_ondemand",
+                  "update_time": "2017-04-20 23:56:00"
+              },
+              "id": 2001,
+              "object_id": 6974453,
+              "parent_info": {
+                  "parent_extra": {
+                        "category_id": 3251,
+                        "tag": ""
+                  },
+                  "parent_id": 212192,
+                  "parent_name": "晓说 2017",
+                  "parent_type": "channel_ondemand"
+              },
+              "sequence": 1,
+              "sub_title": "",
+              "thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg",
+              "thumbs": {
+                  "large_thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg!large",
+                  "medium_thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg!medium",
+                  "small_thumb": "http://pic.qingting.fm/2017/0420/20170420170518395.jpg!small"
+              },
+              "title": "攻陷好莱坞",
+              "update_time": "2017-04-21 00:00:38"
+    ...］
+  }
+
 ```
+
+#### 获取直播banner内容
+```
+/v6/media/recommend/live/banner
+
+返回数据
+{
+    errorno: 0,
+    errormsg: "",
+    data: [
+        {
+            brief_name: "",
+            name: "banner",
+            recommends: [
+                {
+                    detail: {
+                        audience_count: 2632124,
+                        award_desc: "",
+                        award_open: 0,
+                        award_text: "",
+                        category_id: 5,
+                        chatgroup_id: 0,
+                        description: "北京音乐广播（调频97.4兆赫、有线调频94.6兆赫）是北京人民广播电台的八个专业广播之一，是以有社会责任感、以年轻人为主要对象、引导时尚为品牌核心的现代化音乐电台。",
+                        freq: "",
+                        id: 332,
+                        link_id: 0,
+                        mediainfo: {
+                            id: 332
+                        },
+                        sale_props: "",
+                        sale_type: 0,
+                        stream_status: 0,
+                        thumbs: -{
+                            200_thumb: "http://pic.qingting.fm/2015/0828/20150828111022698.jpg!200",
+                            400_thumb: "http://pic.qingting.fm/2015/0828/20150828111022698.jpg!400",
+                            800_thumb: "http://pic.qingting.fm/2015/0828/20150828111022698.jpg!800",
+                            large_thumb: "http://pic.qingting.fm/2015/0828/20150828111022698.jpg!large",
+                            medium_thumb: "http://pic.qingting.fm/2015/0828/20150828111022698.jpg!medium",
+                            small_thumb: "http://pic.qingting.fm/2015/0828/20150828111022698.jpg!small"
+                        },
+                        title: "北京音乐广播",
+                        type: "channel_live",
+                        update_time: "2016-01-14 17:25:38"
+                    },
+                    id: 960001,
+                    object_id: 332,
+                    parent_info: null,
+                    sequence: 1,
+                    sub_title: "",
+                    thumb: "http://pic.qingting.fm/2016/0822/20160822100321355.jpg",
+                    thumbs: {
+                        large_thumb: "http://pic.qingting.fm/2016/0822/20160822100321355.jpg!large",
+                        medium_thumb: "http://pic.qingting.fm/2016/0822/20160822100321355.jpg!medium",
+                        small_thumb: "http://pic.qingting.fm/2016/0822/20160822100321355.jpg!small"
+                    },
+                    title: "北京音乐广播",
+                    update_time: "2016-08-22 10:03:21"
+                },
+                ...
+          ]
+       }
+   ]
+  }
+```
+
 #### 搜索
 ```
 /api/newsearch/findvt?k=lol&groups=all&type=newcms&curpage=1&pagesize=5
