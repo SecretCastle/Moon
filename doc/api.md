@@ -5,9 +5,9 @@
 
 点播的内容的层次结构是：Category -> OnDemandChannel -> OnDemandProgram。
 
-category_id 分类id (如521 => 小说)
-channel_id 指定电台id (如211852 => 人民的名义) 
-program_id 具体节目id (如6850879 => 人民的名义001)
++ category_id 分类id (如521 => 小说)
++ channel_id 指定电台id (如211852 => 人民的名义) 
++ program_id 具体节目id (如6850879 => 人民的名义001)
 
 ## 目录
 - [deviceid和userid](#deviceid和userid)
