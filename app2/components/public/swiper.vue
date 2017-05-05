@@ -1,8 +1,6 @@
 <template>
     <div class="swiper" @touchstart="touchStart" @touchmove = "touchMove" @touchend = "touchEnd">
-        <div v-for = "item in imgData.recommends" class="swiper_img">
-            <img  :src="item.thumbs.large_thumb"/>
-        </div>
+        <slot name ="swiper_img_slot"></slot>
     </div>
 </template>
 <script>
@@ -20,7 +18,7 @@
         },
         props:{
             imgData:{
-                type:Object,
+                type:Array,
                 require:true
             },
             delayTime:{
@@ -35,9 +33,10 @@
             }
         },
         updated(){
-            this.imgLength = this.imgData.recommends.length;
+            this.imgLength = this.imgData.length;
             //渲染Img
-            this.imgData.recommends.forEach((n,i)=>{
+            this.imgData.forEach((n,i)=>{
+                
                 this.$el.childNodes[i].style.transform = `translate3d(${100*i}%,0,0)`;
             });
             if(this.isDelay){
@@ -52,7 +51,6 @@
             touchStart(e){
                 this.isTap = true;
                 this.touchStartX = e.targetTouches[0].pageX;
-
             },
             touchMove(e){
                 if(!this.isTap){
@@ -103,6 +101,3 @@
         }
     }
 </script>
-<style lang="css" scoped>
-    
-</style>

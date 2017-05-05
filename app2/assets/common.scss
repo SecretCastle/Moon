@@ -1,5 +1,212 @@
-*,
-body {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+input,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    border: 0;
     margin: 0;
     padding: 0;
+    vertical-align: baseline;
+    list-style: none;
+}
+
+body {
+    background: #eee;
+}
+
+$bgColorWhite:#fff;
+$bgColorBlack:#000;
+#app {
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'icon_RB';
+    /* project id 295136 */
+    src: url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.eot');
+    src: url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.woff') format('woff'), url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.ttf') format('truetype'), url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.svg#icon_RB') format('svg');
+}
+
+.iconfont {
+    font-family: 'icon_RB' !important;
+    font-size: 24px;
+    color: #000;
+}
+
+
+/*--------------------------------Swiper------------------------*/
+
+.swiper {
+    position: relative;
+    height: 150px;
+    .swiper_img {
+        position: absolute;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+
+/*-----------------------------Loading---------------------------*/
+
+.loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: $bgColorWhite;
+    padding-top: 50%;
+    opacity: 0.5;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    text-align: center;
+    div {
+        font-size: 90px;
+        background: none;
+        animation: circle 1s linear infinite forwards;
+    }
+    @keyframes circle {
+        from {
+            transform: rotate(0)
+        }
+        to {
+            transform: rotate(180deg)
+        }
+    }
+    @-webkit-keyframes circle {
+        from {
+            transform: rotate(0)
+        }
+        to {
+            transform: rotate(180deg)
+        }
+    }
+}
+
+
+/*---------------------------Common Style------------------------*/
+
+.panel {
+    margin: 5px;
+    background: $bgColorWhite;
+    border-radius: 5px;
+    .panel_title {
+        padding: 10px 15px;
+        line-height: 24px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .panel_line {
+        width: 100%;
+        height: 1px;
+        background: #eee;
+    }
+    .panel_content {
+        padding: 10px;
+        position: relative;
+        .panel_content_item {
+            display: inline-block;
+            width: 32%;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.tabSelect {
+    position: relative;
+    background: $bgColorWhite;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    div {
+        width: 25%;
+        padding: 10px 0;
+        text-align: center;
+        border-left: 1px solid #eee;
+        font-size: 14px;
+    }
+    div:first-child {
+        border-left: none;
+    }
 }
