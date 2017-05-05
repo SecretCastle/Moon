@@ -1,28 +1,20 @@
 import Vue from "vue";
 import App from './App';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 
 import router from './router';
 
+
+import Store from './store/index';
+
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
-// const FM = document.getElementById("FM");
-// const DB = document.getElementById("DB");
-
-
-// FM.addEventListener('click', (e) => {
-//     document.body.innerHTML = `<div id = "app"></div>`;
-
-// }, false);
-
-
-// DB.addEventListener('click', (e) => {
-//     document.body.innerHTML = `<div id = "app"></div>`;
-
-// }, false);
 
 new Vue({
     el: '#app',
+    store: Store,
     router: router,
     render: h => h(App)
 });
