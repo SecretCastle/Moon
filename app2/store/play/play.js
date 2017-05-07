@@ -7,7 +7,8 @@ const Play = new Vuex.Store({
     state: {
         playUrl: "",
         stopDuration: 0,
-        hasPlay: false
+        hasPlay: false,
+        isStop: false
     },
     mutations: {
         setUrl(state, url) {
@@ -15,6 +16,9 @@ const Play = new Vuex.Store({
         },
         sethasPlay(state, bol) {
             state.hasPlay = bol;
+        },
+        setIsStop(state, bol) {
+            state.isStop = bol;
         }
     }
 });

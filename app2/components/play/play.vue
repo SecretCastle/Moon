@@ -14,7 +14,7 @@
             
             <div class="play_mid_control flex-arround">
                 <span class="iconfont" @click="prevBtn">&#xe60a;</span>
-                <span class="iconfont" @click="playBtn">&#xe604;</span>
+                <span class="iconfont" @click="playBtn"><em v-if="isStop">&#xe604;</em><em v-else>&#xe605;</em></span>
                 <span class="iconfont" @click="nextBtn">&#xe60b;</span>
             </div>
         </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+    let Music = document.getElementById('Muisc');
     export default {
         props:{
             playUrl:{
@@ -39,6 +40,9 @@
             },
             test(){
                 return this.$store.Play.state.playUrl;
+            },
+            isStop(){
+                return this.$store.Play.state.isStop;
             }
         },
         methods:{
@@ -46,11 +50,18 @@
                 console.log('prev');
             },
             playBtn(){
-                console.log('play');
+                if(this.isStop){
+                    this.$el.childNodes[0].play();
+                    this.$store.Play.commit('setIsStop',false);
+                }else{
+                    this.$el.childNodes[0].pause();
+                    this.$store.Play.commit('setIsStop',true);
+                }
             },
             nextBtn(){
                 console.log('next');
-            }
+            },
+            
         },
         updated(){
             console.log("这是获取的更新",this.test);

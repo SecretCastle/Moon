@@ -1,5 +1,5 @@
 <template>
-    <div class="main_content_wrap">
+    <div class="main_content_wrap" :class="{isPlay:isPlay}">
         <!--Loading-->
         <loading></loading>
         <!--顶部图片-->
@@ -99,6 +99,11 @@
                 this.$store.Play.commit('setUrl','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
                 this.$store.Play.commit('sethasPlay',true);
                 localStorage.setItem('saveUrl','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
+            }
+        },
+        computed:{
+            isPlay(){
+                return this.$store.Play.state.hasPlay;
             }
         }
     }
