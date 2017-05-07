@@ -98,14 +98,50 @@ $bgColorBlack:#000;
 @font-face {
     font-family: 'icon_RB';
     /* project id 295136 */
-    src: url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.eot');
-    src: url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.woff') format('woff'), url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.ttf') format('truetype'), url('https://at.alicdn.com/t/font_xsk5wt2ubecxflxr.svg#icon_RB') format('svg');
+    src: url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.eot');
+    src: url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.woff') format('woff'), url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.ttf') format('truetype'), url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.svg#icon_RB') format('svg');
 }
 
 .iconfont {
     font-family: 'icon_RB' !important;
     font-size: 24px;
     color: #000;
+}
+
+.flex-left,
+.flex-right,
+.flex-center,
+.flex-arround,
+.flex-between {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+}
+
+.flex-left {
+    justify-content: flex-start;
+}
+
+.flex-right {
+    justify-content: flex-end;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.flex-arround {
+    justify-content: space-around;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.clearfix {
+    display: table;
+    overflow: hidden;
+    clear: both;
 }
 
 
@@ -164,6 +200,10 @@ $bgColorBlack:#000;
 
 /*---------------------------Common Style------------------------*/
 
+.main_content_wrap.isPlay {
+    margin-bottom: 85px;
+}
+
 .panel {
     margin: 5px;
     background: $bgColorWhite;
@@ -209,4 +249,75 @@ $bgColorBlack:#000;
     div:first-child {
         border-left: none;
     }
+}
+
+
+/*--------------------Play Area------------------*/
+
+.play_panel {
+    width: 100%;
+    position: fixed;
+    height: 80px;
+    background: #e1e;
+    left: 0;
+    bottom: 0;
+    transform: translate3d(0, 80px, 0);
+    transition: transform 0.5s ease-out;
+    -webkit-transform: translate3d(0, 80px, 0);
+    -webkit-transition: -webkit-transform 0.5s ease-out;
+    audio {
+        display: none;
+    }
+    .play_mid_panel {
+        padding: 10px;
+        overflow: hidden;
+        .panel_left {
+            width: 65%;
+            .play_urlImg {
+                width: 60px;
+                height: 60px;
+                display: inline-block;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .play_mid_title {
+                overflow: hidden;
+                text-align: center;
+                padding: 0 20px;
+                color: #fff;
+                span {
+                    display: block;
+                    font-size: 14px;
+                }
+                span:first-child {
+                    line-height: 35px;
+                    font-size: 16px;
+                }
+            }
+        }
+        .play_mid_control {
+            width: 35%;
+            span {
+                display: inline-block;
+                width: 33.33%;
+                line-height: 60px;
+                text-align: center;
+                font-size: 24px;
+                color: #fff;
+            }
+            span:first-child,
+            span:last-child {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+.play_panel.isPlay {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.5s ease-out;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 0.5s ease-out;
 }

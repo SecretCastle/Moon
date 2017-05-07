@@ -19,7 +19,7 @@
             <div class="panel_title">分类</div>
             <div class="panel_line"></div>
             <div class="panel_content">
-                <div class="panel_content_item">
+                <div class="panel_content_item" @click="testClick">
                     <img src="https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg" />
                 </div>
                 <div class="panel_content_item">
@@ -86,7 +86,6 @@
         },
         created(){
             axios.get('/section/0').then((res)=>{
-                console.log('初始化数据',res);
                 if(res){
                     this.imgData = res.data.data[0].recommends;
                     this.$store.Common.commit('done',false);
@@ -94,6 +93,13 @@
             }).catch((err)=>{
                 console.warn(err);
             });
+        },
+        methods:{
+            testClick(){
+                this.$store.Play.commit('setUrl','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
+                this.$store.Play.commit('sethasPlay',true);
+                localStorage.setItem('saveUrl','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
+            }
         }
     }
 </script>

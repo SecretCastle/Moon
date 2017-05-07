@@ -5,11 +5,16 @@ Vue.use(Vuex);
 
 const Play = new Vuex.Store({
     state: {
-        playUrl: ""
+        playUrl: "",
+        stopDuration: 0,
+        hasPlay: false
     },
     mutations: {
-        play() {
-
+        setUrl(state, url) {
+            state.playUrl = url;
+        },
+        sethasPlay(state, bol) {
+            state.hasPlay = bol;
         }
     }
 });
