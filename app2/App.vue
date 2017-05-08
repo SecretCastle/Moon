@@ -21,8 +21,8 @@
             localStorage.clear();
             let urlSave = localStorage.getItem('saveUrl');
             if(urlSave !== undefined && urlSave !== null){   
-                this.$store.Play.commit('setUrl',urlSave);
-                this.$store.Play.commit('sethasPlay',true);
+                this.$store.commit('SET_URL',urlSave);
+                this.$store.commit('SET_HAS_PLAY',true);
             }
         }
     }

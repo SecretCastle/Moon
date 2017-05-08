@@ -30,6 +30,8 @@ const Public = {
         srcEle.src = url;
         const promsie = new Promise((resolve, reject) => {
             srcEle.oncanplay = function() {
+                //这里的修改处理思路
+                //resolve success，让调用与加载部分，处理播放状态
                 resolve('success');
             }
             srcEle.onerror = function() {

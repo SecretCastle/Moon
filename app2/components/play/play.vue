@@ -1,6 +1,6 @@
 <template>
     <div class="play_panel" :class="{isPlay:isPlay}">
-        <audio :src="url" id="Muisc" autoplay></audio>
+        <audio :src="playLink" id="Muisc" autoplay></audio>
         <div class="play_mid_panel flex-left"> 
             <div class="panel_left flex-left">
                 <div class="play_urlImg">
@@ -23,26 +23,28 @@
 
 <script>
     let Music = document.getElementById('Muisc');
+    import Public from '../../utils/public';
+    let basUrl = "http://upod.qingting.fm";
     export default {
-        props:{
-            playUrl:{
-                type:String,
-                require:false
+        data(){
+            return {
+                playLinkState:false,
+                playLink:'',
+                count:0
             }
         },
         computed:{
-            url(){
-                console.log(this.$store.Play.state.playUrl);
-                return "http://upod.qingting.fm"+this.$store.Play.state.playUrl;
+            getUrl(){
+                return this.$store.state.playUrl;
             },
             isPlay(){
-                return this.$store.Play.state.hasPlay
+                return this.$store.state.hasPlay
             },
             test(){
-                return this.$store.Play.state.playUrl;
+                return this.$store.state.playUrl;
             },
             isStop(){
-                return this.$store.Play.state.isStop;
+                return this.$store.state.isStop;
             }
         },
         methods:{
@@ -52,19 +54,41 @@
             playBtn(){
                 if(this.isStop){
                     this.$el.childNodes[0].play();
-                    this.$store.Play.commit('setIsStop',false);
+                    this.$store.commit('SET_IS_STOP',false);
                 }else{
                     this.$el.childNodes[0].pause();
-                    this.$store.Play.commit('setIsStop',true);
+                    this.$store.commit('SET_IS_STOP',true);
                 }
             },
             nextBtn(){
                 console.log('next');
             },
+            /**
+                这里需要优化，目前的bug，每次更新都要加载一次promise
+             */
+            playUrl(){
+                const loadUrl = setInterval(()=>{
+                    if(this.playLinkState){
+                        this.playLink = basUrl + this.getUrl;
+                        clearInterval(loadUrl);
+                    }else{
+                        console.log('加载中');
+                    }
+                },500);
+            }
             
         },
         updated(){
-            console.log("这是获取的更新",this.test);
+            this.playUrl();
+            Public.preLoadAudio(basUrl+this.getUrl).then((res)=>{
+                if(res === 'success'){
+                    //这里修改处理思路，根据res返回的‘success’，修改stroe中的状态，联动的带动播放
+                    this.playLinkState = true;
+                }
+            }).catch((err)=>{
+
+            });
+            
         }
     }
 </script>

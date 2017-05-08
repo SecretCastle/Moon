@@ -1,10 +1,19 @@
-import Home from "./home/home";
-import Play from "./play/play";
-import Common from './common/common';
-const index = {
-    Home: Home,
-    Play: Play,
-    Common: Common
+import Vue from 'vue';
+import Vuex from 'vuex';
+import mutations from './mutation';
+Vue.use(Vuex);
+
+
+const state = {
+    //common 
+    loadingState: true,
+    //play
+    playUrl: null,
+    hasPlay: false,
+    isStop: false
 };
 
-export default index;
+export default new Vuex.Store({
+    state,
+    mutations
+});

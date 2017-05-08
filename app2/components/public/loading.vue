@@ -7,7 +7,7 @@
     export default {
         computed:{
             isLoading(){
-               return this.$store.Common.state.loadingState;
+               return this.$store.state.loadingState;
             }
         }
     }
