@@ -6,8 +6,8 @@ import {
 } from './mutation_type';
 
 const Mutations = {
-    [SET_URL](state, newurl) { // playUrl
-        state.playUrl = newurl;
+    [SET_URL](state, url) { // playUrl
+        state.playUrl = url;
     },
     [SET_HAS_PLAY](state, bool) { // hasPlay
         state.hasPlay = bool;

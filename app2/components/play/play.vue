@@ -1,5 +1,5 @@
 <template>
-    <div class="play_panel" :class="{isPlay:isPlay}">
+    <div class="play_panel" :class="[getUrl !== null ? 'isPlay':'']">
         <audio :src="playLink" id="Muisc" autoplay></audio>
         <div class="play_mid_panel flex-left"> 
             <div class="panel_left flex-left">
@@ -23,14 +23,14 @@
 
 <script>
     let Music = document.getElementById('Muisc');
-    import Public from '../../utils/public';
     let basUrl = "http://upod.qingting.fm";
+
+    import Public from '../../utils/public';
     export default {
         data(){
             return {
                 playLinkState:false,
-                playLink:'',
-                count:0
+                playLink:''
             }
         },
         computed:{
@@ -79,6 +79,7 @@
             
         },
         updated(){
+            console.log('获得的url',this.getUrl);
             this.playUrl();
             Public.preLoadAudio(basUrl+this.getUrl).then((res)=>{
                 if(res === 'success'){

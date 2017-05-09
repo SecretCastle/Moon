@@ -1,5 +1,5 @@
 <template>
-    <div class="main_content_wrap" :class="{isPlay:isPlay}">
+    <div class="main_content_wrap" :class="[isPlay !== null ? 'isPlay':'']">
         <!--Loading-->
         <loading></loading>
         <!--顶部图片-->
@@ -74,7 +74,7 @@
         },
         computed:{
             isPlay(){
-                return this.$store.state.hasPlay;
+                return this.$store.state.playUrl;
             }
         }
     }
