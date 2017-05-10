@@ -1,5 +1,5 @@
 <template>
-    <div class="loading" v-show = "isLoading">
+    <div class="loading" v-show = "!isLoading">
         <div class="iconfont">&#xe642;</div>
     </div>
 </template>

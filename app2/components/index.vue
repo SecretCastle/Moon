@@ -4,7 +4,7 @@
         <loading></loading>
         <!--顶部图片-->
         <!--参数 => isDelay , delayTime-->
-        <swiper :img-data="imgData" :isDelay="true">
+        <swiper :img-data="imgData">
             <div slot="swiper_img_slot" class="swiper_img" v-for = "item in imgData" :key = "item.id">
                 <img :src="item.thumbs.large_thumb" />
             </div>
@@ -15,22 +15,7 @@
             <div>其他</div>
             <div>其他</div>
         </div>
-        <div class="panel">
-            <div class="panel_title">分类</div>
-            <div class="panel_line"></div>
-            <div class="panel_content">
-                <div class="panel_content_item" @click="testClick">
-                    <img src="https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg" />
-                </div>
-                <div class="panel_content_item">
-                    <img src="https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg" />
-                </div>
-                <div class="panel_content_item">
-                    <img src="https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg" />
-                </div>
-            </div>
-        </div>
-        
+        <home-item-group :home-data="homeData"></home-item-group>
     </div>
 </template>
 
@@ -40,6 +25,7 @@
     import Swiper from "./public/swiper";
     import axios from 'axios';
     import Loading from './public/loading';
+    import HomeItemGroup from './home_item/homeitemgroup';
 
     export default {
         data(){
@@ -48,18 +34,22 @@
                     "thumbs": {
                         "large_thumb": "https://img.alicdn.com/imgextra/i1/786678272/TB2Ni_eXghJc1FjSZFDXXbvnFXa_!!786678272.jpg"
                     }
-                }]
+                }],
+                homeData:[]
             }
         },
         components:{
             Swiper,
-            Loading
+            Loading,
+            "home-item-group":HomeItemGroup
         },
-        created(){
+        mounted(){
             axios.get('/section/0').then((res)=>{
                 if(res){
+                    console.log("初始化的数据",res);
                     this.imgData = res.data.data[0].recommends;
-                    this.$store.commit('HAS_DONE',false);
+                    this.$store.commit('HAS_DONE',true);
+                    this.homeData = this.filterData(res.data.data);
                 }
             }).catch((err)=>{
                 console.warn(err);
@@ -70,6 +60,12 @@
                 this.$store.commit('SET_URL','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
                 this.$store.commit('SET_HAS_PLAY',true);
                 localStorage.setItem('saveUrl','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
+            },
+            /**
+            过滤不包括brief_name的data
+            */
+            filterData(data){
+                return data.filter( item => item.brief_name !== "");
             }
         },
         computed:{

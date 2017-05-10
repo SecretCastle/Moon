@@ -140,7 +140,7 @@ $bgColorBlack:#000;
 }
 
 .clearfix {
-    display: table;
+    display: block;
     overflow: hidden;
     clear: both;
 }
@@ -205,6 +205,10 @@ $bgColorBlack:#000;
     margin-bottom: 85px;
 }
 
+.home_item_group {
+    position: relative;
+}
+
 .panel {
     margin: 5px;
     background: $bgColorWhite;
@@ -214,9 +218,14 @@ $bgColorBlack:#000;
         line-height: 24px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
+        span {
+            display: inline-block;
+        }
+        span:last-child {
+            float: right;
+        }
     }
     .panel_line {
-        width: 100%;
         height: 1px;
         background: #eee;
     }
@@ -225,10 +234,23 @@ $bgColorBlack:#000;
         position: relative;
         .panel_content_item {
             display: inline-block;
-            width: 32%;
+            width: 31%;
+            margin: 1%;
             img {
                 width: 100%;
                 height: 100%;
+            }
+            span {
+                height: 28px;
+                line-height: 28px;
+                -webkit-line-break: strict;
+                width: 100%;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+                font-size: 12px;
+                text-align: center;
             }
         }
     }
@@ -321,4 +343,90 @@ $bgColorBlack:#000;
     transition: transform 0.5s ease-out;
     -webkit-transform: translate3d(0, 0, 0);
     -webkit-transition: -webkit-transform 0.5s ease-out;
+}
+
+
+/*--------------------Item Detail------------------*/
+
+.item_detail_wrap {
+    position: relative;
+    .info_wrap {
+        height: 250px;
+        background: #4D5D8C;
+        .leftImgOfProgram {
+            width: 50%;
+            height: 100%;
+            img {
+                width: 150px;
+                height: 150px;
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%, -50%, 0);
+                -webkit-transform: translate3d(-50%, -50%, 0);
+                border-radius: 50%;
+                box-shadow: 0 0 10px #f1f1f1;
+            }
+        }
+        .rightContentOfProgram {
+            width: 50%;
+            padding: 30px 10px;
+            color: #fff;
+            box-sizing: border-box;
+            .program_title {
+                line-height: 28px;
+                text-align: center;
+            }
+            .program_decsription {
+                font-size: 12px;
+                height: 100px;
+                overflow: scroll;
+                text-indent: 2em;
+                margin-top: 5px;
+            }
+            .program_author {
+                margin-top: 10px;
+            }
+        }
+    }
+    .item_list {
+        margin-top: 5px;
+        .item_list_panel {
+            height: 80px;
+            background: $bgColorWhite;
+            margin-bottom: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+            .item_list_panel_title {
+                font-size: 18px;
+                line-height: 35px;
+                span {
+                    display: inline-block;
+                }
+                span:last-child {
+                    float: right;
+                }
+            }
+            .item_list_panel_detail {
+                font-size: 12px;
+                span {
+                    width: 30%;
+                    display: inline-block;
+                    line-height: 30px;
+                    text-align: center;
+                }
+                span:first-child {
+                    width: 20%;
+                    text-align: left;
+                }
+                span:last-child {
+                    width: 50%;
+                    text-align: right;
+                }
+            }
+        }
+        .item_list_panel.isTap {
+            background: #ccc;
+        }
+    }
 }

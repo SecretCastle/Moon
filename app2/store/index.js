@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const state = {
     //common 
-    loadingState: true,
+    loadingState: false,
     //play
     playUrl: null,
     hasPlay: false,
