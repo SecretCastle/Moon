@@ -401,10 +401,17 @@ $bgColorBlack:#000;
                 font-size: 18px;
                 line-height: 35px;
                 span {
-                    display: inline-block;
+                    display: block;
+                    float: left;
+                    width: 95%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    height: 35px;
                 }
                 span:last-child {
                     float: right;
+                    width: 5%;
                 }
             }
             .item_list_panel_detail {

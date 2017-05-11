@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const Public = {
     /**
      * 图片预加载方法,返回promise对象
@@ -40,8 +42,58 @@ const Public = {
             }
         });
         return promsie;
-    }
+    },
 
+    /**
+     * 
+     *  多api请求处理
+     *  参数类型 string
+     */
+    MultiRequest() {
+        let args = [...arguments];
+        let req = [];
+
+        //this.CheckEachArgsOfArguments(args);
+        args.forEach((ele, index) => {
+            req.push(this.RequestUrl(ele));
+        });
+
+        return new Promise((resolve, reject) => {
+            Promise.all(req).then((res) => {
+                if (res) {
+                    resolve(res);
+                }
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    },
+
+    /**
+     * 
+     * 请求api,返回promise对象
+     * @param {any} reqUrl 
+     * @returns 
+     */
+    RequestUrl(reqUrl) {
+        return new Promise((resolve, reject) => {
+            axios.get(reqUrl).then((res) => {
+                if (res) {
+                    resolve(res);
+                }
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    },
+    CheckEachArgsOfArguments(arry) {
+        console.log('get array', arry);
+        arry.forEach((ele, index) => {
+            if (typeof ele === 'object') {
+                throw `${ele} this is an Object, we need string`;
+            }
+        });
+    }
 
 }
 

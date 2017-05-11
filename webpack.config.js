@@ -35,6 +35,14 @@ module.exports = {
                 pathRewrite: {
                     '^/section': '/section'
                 }
+            },
+            '/programs': {
+                target: 'http://api2.qingting.fm/v6/media/programs',
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: {
+                    '^/programs': '/programs'
+                }
             }
         }
     },

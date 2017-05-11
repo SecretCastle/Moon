@@ -38,7 +38,13 @@
         },
         methods:{
             clickTap(){
-                this.$router.push({path:`/program`});
+                //直播中没有parent_info，这里过滤
+                if(this.homeItem.parent_info){
+                    this.$router.push({path:`/program/${this.homeItem.parent_info.parent_id}`});
+                }else{
+                    alert('没有');
+                }
+                
             }
         }
     }
