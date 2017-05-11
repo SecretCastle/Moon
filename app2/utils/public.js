@@ -93,8 +93,24 @@ const Public = {
                 throw `${ele} this is an Object, we need string`;
             }
         });
-    }
+    },
 
+    /**
+     * 计算program的时间
+     * 
+     * @param {any} duration  单位秒
+     * @returns 
+     */
+    computeMinutes(duration) {
+        duration = Math.round(duration);
+        let min = Math.floor(duration / 60);
+        let secs = duration % 60;
+
+        if (secs < 10) {
+            secs = '0' + secs;
+        }
+        return `${min}分${secs}秒`;
+    }
 }
 
 export default Public;

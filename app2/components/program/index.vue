@@ -1,5 +1,5 @@
 <template>
-    <div class="item_detail_wrap">
+    <div class="item_detail_wrap main_content_wrap" :class="[isPlay !== null ? 'isPlay':'']">
         <loading></loading>
         <program-info :info-data="reqData[0]"></program-info>
         <program-list :list-data="reqData[1]"></program-list>
@@ -41,6 +41,11 @@
             }).catch((err)=>{
                 throw err;
             });
+        },
+        computed:{
+            isPlay(){
+                return this.$store.state.playUrl;
+            }
         }
     }
 </script>

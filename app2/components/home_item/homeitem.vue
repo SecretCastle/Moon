@@ -1,5 +1,5 @@
 <template>
-    <div class="panel_content_item" v-if="isPositiveProportion" @click ="clickTap">
+    <div class="panel_content_item" v-if="isPositiveProportion"  @click ="clickTap">
         <img :src="url.src" />
         <span>{{homeItem.title}}</span>
     </div>
@@ -10,7 +10,9 @@
     export default {
         data(){
             return {
-                url:'https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg'
+                url:{
+                    src:'../../assets/default.jpg'
+                }
             }
         },
         props:{

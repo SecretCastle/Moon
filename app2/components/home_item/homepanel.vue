@@ -26,7 +26,12 @@
         },
         methods:{
             tabClick(){
-                console.log('点击menu');
+                if(this.homePanel.redirect.attributes  && this.homePanel.redirect.category_id){
+                    this.$router.push({path:`/channel/${this.homePanel.redirect.category_id}/${this.homePanel.redirect.attributes[0]}`});
+                }else{
+                    console.log('点击menu',this.homePanel);
+                }
+                
             }
         }
     }

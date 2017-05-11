@@ -10,10 +10,10 @@
             </div>
         </swiper>
         <div class="tabSelect">
-            <div>精品</div>
-            <div>分类</div>
-            <div>其他</div>
-            <div>其他</div>
+            <router-link to="/recommend/1011">精品</router-link>
+            <router-link to="/categories">分类</router-link>
+            <router-link to="">其他</router-link>
+            <router-link to="">其他</router-link>
         </div>
         <home-item-group :home-data="homeData"></home-item-group>
     </div>
@@ -44,6 +44,7 @@
             "home-item-group":HomeItemGroup
         },
         mounted(){
+            this.$store.commit('HAS_DONE',false);
             axios.get('/section/0').then((res)=>{
                 if(res){
                     console.log("初始化的数据",res);
