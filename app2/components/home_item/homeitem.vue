@@ -1,6 +1,6 @@
 <template>
     <div class="panel_content_item" v-if="isPositiveProportion"  @click ="clickTap">
-        <img :src="url.src" />
+        <img src="../../assets/default.jpg" />
         <span>{{homeItem.title}}</span>
     </div>
 </template>
@@ -11,7 +11,7 @@
         data(){
             return {
                 url:{
-                    src:'../../assets/default.jpg'
+                    src:''
                 }
             }
         },
@@ -21,10 +21,11 @@
                 require:false
             }
         },
-        created(){
+        mounted(){
             Public.preImgLoad(this.homeItem.thumb).then((res)=>{
                 if(typeof res === 'object'){
                     this.url =  res;
+                    
                 }
             }).catch((err)=>{
 
@@ -38,13 +39,21 @@
                 }
             }
         },
+        updated(){
+             if(this.$el.childNodes.length > 0){
+                this.$el.childNodes[0].src=this.url.src;
+             }
+        },
         methods:{
             clickTap(){
                 //直播中没有parent_info，这里过滤
                 if(this.homeItem.parent_info){
                     this.$router.push({path:`/program/${this.homeItem.parent_info.parent_id}`});
                 }else{
-                    alert('没有');
+                    this.$store.commit('TOAST_STATE',{
+                        bol:true,
+                        msg:`${this.homeItem.title}，没有子栏目`
+                    });
                 }
                 
             }

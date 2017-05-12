@@ -10,7 +10,9 @@ const state = {
     //play
     playUrl: null,
     hasPlay: false,
-    isStop: false
+    isStop: false,
+    toast: false,
+    msg: '这是一个神奇的事情'
 };
 
 export default new Vuex.Store({

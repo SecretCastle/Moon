@@ -2,7 +2,8 @@ import {
     SET_URL,
     SET_HAS_PLAY,
     SET_IS_STOP,
-    HAS_DONE
+    HAS_DONE,
+    TOAST_STATE
 } from './mutation_type';
 
 const Mutations = {
@@ -17,6 +18,10 @@ const Mutations = {
     },
     [HAS_DONE](state, bool) { //修改的参数 loadingState
         state.loadingState = bool;
+    },
+    [TOAST_STATE](state, stateObj) {
+        state.toast = stateObj.bol;
+        state.msg = stateObj.msg;
     }
 }
 

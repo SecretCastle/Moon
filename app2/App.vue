@@ -1,12 +1,17 @@
 <!--前期app文件夹结构混乱-->
 <template>
     <div id = "app">
+        <loading></loading>
+        <toast></toast>
         <router-view></router-view> 
         <play-area :play-url="url"></play-area>
     </div>
 </template>
 <script>
     import PlayArea from "./components/play/play";
+    import Loading from './components/public/loading';
+    import Toast from './components/public/toast';
+
     export default {
         data(){
             return {
@@ -14,7 +19,9 @@
             }
         },
         components:{
-            PlayArea
+            PlayArea,
+            Loading,
+            Toast
         },
         created(){
             //检查是否存在storage

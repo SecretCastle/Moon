@@ -1,7 +1,7 @@
 <template>
     <div class="info_wrap flex-arround">
         <div class="leftImgOfProgram">
-            <img :src="infoData.data.data.thumbs.large_thumb" />
+            <img src="../../assets/default.jpg" />
         </div>
         <div class="rightContentOfProgram">
             <div class="program_title">{{this.infoData.data.data.title}}</div>
@@ -11,8 +11,8 @@
     </div>
 </template>
 <script>
+    import Public from '../../utils/public';
     export default {
-        
         props:{
             infoData:{
                 type:Object,
@@ -31,6 +31,15 @@
                     }
                 }
             }
+        },
+        updated(){
+            Public.preImgLoad(this.infoData.data.data.thumbs.large_thumb).then(res=>{
+                if(res){
+                    this.$el.childNodes[0].childNodes[0].src=res.src;
+                }
+            }).catch(err=>{
+
+            });
         }
     }
 </script>

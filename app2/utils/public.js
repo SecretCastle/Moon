@@ -10,7 +10,7 @@ const Public = {
     preImgLoad(imgSrc) {
         let imgEle = new Image();
         imgEle.src = imgSrc;
-        console.log("加载的图片的尺寸", imgEle.width, imgEle.height);
+        //console.log("加载的图片的尺寸", imgEle.width, imgEle.height);
         const promsie = new Promise((resolve, reject) => {
             imgEle.onload = function() {
                 resolve(imgEle);

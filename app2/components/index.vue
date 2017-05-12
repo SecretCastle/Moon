@@ -1,7 +1,6 @@
 <template>
     <div class="main_content_wrap" :class="[isPlay !== null ? 'isPlay':'']">
-        <!--Loading-->
-        <loading></loading>
+        
         <!--顶部图片-->
         <!--参数 => isDelay , delayTime-->
         <swiper :img-data="imgData">
@@ -24,7 +23,7 @@
 
     import Swiper from "./public/swiper";
     import axios from 'axios';
-    import Loading from './public/loading';
+    //import Loading from './public/loading';
     import HomeItemGroup from './home_item/homeitemgroup';
 
     export default {
@@ -40,14 +39,13 @@
         },
         components:{
             Swiper,
-            Loading,
             "home-item-group":HomeItemGroup
         },
         mounted(){
             this.$store.commit('HAS_DONE',false);
             axios.get('/section/0').then((res)=>{
                 if(res){
-                    console.log("初始化的数据",res);
+                    //console.log("初始化的数据",res);
                     this.imgData = res.data.data[0].recommends;
                     this.$store.commit('HAS_DONE',true);
                     this.homeData = this.filterData(res.data.data);

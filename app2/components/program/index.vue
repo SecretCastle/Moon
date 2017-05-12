@@ -1,6 +1,5 @@
 <template>
     <div class="item_detail_wrap main_content_wrap" :class="[isPlay !== null ? 'isPlay':'']">
-        <loading></loading>
         <program-info :info-data="reqData[0]"></program-info>
         <program-list :list-data="reqData[1]"></program-list>
     </div>
@@ -9,7 +8,7 @@
 <script>
     import ProgramInfo from './programinfo';
     import ProgramList from './programlist';
-    import Loading from '../public/loading'
+    
     import axios from 'axios';
     import Public from '../../utils/public';
 
@@ -21,8 +20,8 @@
         },
         components:{
             ProgramInfo,
-            ProgramList,
-            Loading
+            ProgramList
+         
         },
         created(){
             this.chanelId = this.$route.params.id;
@@ -36,7 +35,6 @@
                 if(res){
                     this.$store.commit('HAS_DONE',true);
                     this.reqData = [...res];
-                    console.log([...res]);
                 }
             }).catch((err)=>{
                 throw err;

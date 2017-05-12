@@ -1,7 +1,5 @@
 <template>
     <div class="main_content_wrap" :class="[isPlay !== null ? 'isPlay':'']">
-        <loading></loading>
-
         <swiper :img-data="imgData">
             <div slot="swiper_img_slot" class="swiper_img" v-for = "item in imgData" :key = "item.id">
                 <img :src="item.thumbs.large_thumb" />
@@ -11,7 +9,7 @@
     </div>
 </template>
 <script>
-    import Loading from '../public/loading';
+    
     import Swiper from '../public/swiper';
     import HomeItemGroup from '../home_item/homeitemgroup';
     import axios from 'axios';
@@ -30,7 +28,6 @@
         },
         components:{
             Swiper,
-            Loading,
             'home-item-group':HomeItemGroup
         },
         computed:{
@@ -45,7 +42,7 @@
             this.chanelId = this.$route.params.id;
             this.$store.commit('HAS_DONE',false);
             axios.get(`/section/${this.chanelId}`).then((res)=>{
-                console.log(res);
+                //console.log(res);
                 if(res){
                      this.$store.commit('HAS_DONE',true);
                      this.imgData = res.data.data.shift().recommends;
