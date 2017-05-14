@@ -20,6 +20,7 @@
         created(){
             axios.get('/categories').then(res=>{
                 if(res){
+                    this.$store.commit('HAS_DONE',true);
                     this.resData = res.data.data
                 }
             }).catch(err=>{
