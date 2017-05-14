@@ -1,7 +1,7 @@
 <template>
     <div class="refresh_wrap" @touchstart="touchStart"  @touchmove="touchMove" @touchend="touchEnd">
         <slot name="fresh">
-            <div v-for="item in list">{{item.name}}</div>
+            
         </slot>
     </div>
 </template>
@@ -13,207 +13,18 @@
                 startY:0,
                 moveY:0,
                 isMove:false,
-                scrollHeight:0,
-                list:[{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                }]
+                scrollHeight:0
             }
         },
         props:{
             scrollType:{
                 type:String,
                 require:false,
-                default:'toTobottom' //滚动刷新
+                default:'topTobottom' //滚动刷新
+            },
+            onRefresh:{
+                type:Function,
+                require:true
             }
         },
         created(){
@@ -223,12 +34,15 @@
         mounted(){
             this.scrollHeight = this.$el.scrollHeight;
         },
+        updated(){
+            this.scrollHeight = this.$el.scrollHeight;
+        },
         methods:{
             touchStart(e){
                 //e.preventDefault();
                 this.isMove = true;
                 this.startY = e.touches[0].pageY;
-                console.log(this);
+                console.log(this,this.scrollType);
             },
             touchMove(e){
                 //e.preventDefault();
@@ -241,21 +55,27 @@
                         this.$el.style.transform = `translate3d(0,${this.moveY}px,0)`;
                         this.$el.style.webkitTransform = `translate3d(0,${this.moveY}px,0)`;
                     }
-                }else if(this.scrollType === 'toTobottom'){
-                    console.log(document.body.scrollTop,this.scrollHeight-100);
-                    if(document.body.scrollTop > this.scrollHeight - 1500){
-                        
-                    }
                 }
             },
             touchEnd(e){
                 if(!this.isMove){
                     return;
                 }
-                if(this.scrollType==='bottomTotop'){
-                     this.$el.style.transform = `translate3d(0,0,0)`;
+                if(this.scrollType === 'bottomTotop'){
+                    this.$el.style.transform = `translate3d(0,0,0)`;
                     this.$el.style.webkitTransform = `translate3d(0,0,0)`;
-                    console.log('touch end',document.body.scrollTop);
+                    console.log('touch end',document.body.scrollTop,this.moveY);
+                    if(document.body.scrollTop === 0){
+                         this.onRefresh();
+                    }
+                   
+                   
+                }else if(this.scrollType === 'topTobottom'){
+                    console.log(document.body.scrollTop,this.scrollHeight-100);
+                    if(document.body.scrollTop > this.scrollHeight - 1500){
+                        //when topTobottom
+                        this.onRefresh();
+                    }
                 }
             }
         }
