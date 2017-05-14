@@ -88,6 +88,7 @@ video {
 
 body {
     background: #eee;
+    overflow-x: hidden;
 }
 
 $bgColorWhite:#fff;
@@ -101,7 +102,7 @@ $BaseFontSize:75;
 }
 
 #app {
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 @font-face {
@@ -394,9 +395,11 @@ $BaseFontSize:75;
                 text-align: center;
                 padding: 0 computeSize(40);
                 color: #fff;
+                width: 50%;
                 span {
-                    display: block;
                     font-size: computeSize(28);
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
                 span:first-child {
                     line-height: computeSize(70);
@@ -586,5 +589,22 @@ $BaseFontSize:75;
                 text-align: right;
             }
         }
+    }
+}
+
+
+/*---------------------------Refresh-----------------------------*/
+
+.refresh_wrap {
+    position: relative;
+    font-size: computeSize(48);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transition: transform .1s ease-in-out;
+    -webkit-transition: -webkit-transform .1s ease-in-out;
+    div {
+        padding: 10px;
+        background: #fff;
+        margin: 5px;
     }
 }

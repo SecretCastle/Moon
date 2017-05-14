@@ -7,6 +7,8 @@ import Program from './components/program/index';
 import Recommend from './components/recommend/index';
 import Categories from './components/categories';
 import Channel from './components/channel/index';
+import Refresh from './components/public/refresh';
+
 
 const Routes = new VueRouter({
     routes: [{
@@ -32,6 +34,10 @@ const Routes = new VueRouter({
         {
             path: '/channel',
             component: Channel
+        },
+        {
+            path: '/test/refresh',
+            component: Refresh
         }
     ]
 });

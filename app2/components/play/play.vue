@@ -7,8 +7,7 @@
                     <img src="https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg" />
                 </div>
                 <div class="play_mid_title">
-                    <span>人民的名义001</span>
-                    <span>HenryChen</span>
+                    <span>{{getUrl? getUrl.title :''}}</span>
                 </div>
             </div>
             
@@ -23,7 +22,7 @@
 
 <script>
     let Music = document.getElementById('Muisc');
-    let basUrl = "http://upod.qingting.fm";
+    let basUrl = "http://upod.qingting.fm/";
 
     import Public from '../../utils/public';
     export default {
@@ -39,9 +38,6 @@
             },
             isPlay(){
                 return this.$store.state.hasPlay
-            },
-            test(){
-                return this.$store.state.playUrl;
             },
             isStop(){
                 return this.$store.state.isStop;
@@ -69,7 +65,7 @@
             playUrl(){
                 const loadUrl = setInterval(()=>{
                     if(this.playLinkState){
-                        this.playLink = basUrl + this.getUrl;
+                        this.playLink = basUrl + this.getUrl.mediainfo.bitrates_url[0].file_path;
                         clearInterval(loadUrl);
                     }else{
                         console.log('加载中');
@@ -78,10 +74,22 @@
             }
             
         },
+        mounted(){
+            if(this.getUrl){
+                this.playUrl();
+                Public.preLoadAudio(basUrl+this.getUrl.mediainfo.bitrates_url[0].file_path).then((res)=>{
+                    if(res === 'success'){
+                        //这里修改处理思路，根据res返回的‘success’，修改stroe中的状态，联动的带动播放
+                        this.playLinkState = true;
+                    }
+                }).catch((err)=>{
+
+                });
+            }
+        },
         updated(){
-            console.log('获得的url',this.getUrl);
             this.playUrl();
-            Public.preLoadAudio(basUrl+this.getUrl).then((res)=>{
+            Public.preLoadAudio(basUrl+this.getUrl.mediainfo.bitrates_url[0].file_path).then((res)=>{
                 if(res === 'success'){
                     //这里修改处理思路，根据res返回的‘success’，修改stroe中的状态，联动的带动播放
                     this.playLinkState = true;

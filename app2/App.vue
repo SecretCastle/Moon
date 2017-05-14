@@ -27,8 +27,9 @@
             //检查是否存在storage
             localStorage.clear();
             let urlSave = localStorage.getItem('saveUrl');
-            if(urlSave !== undefined && urlSave !== null){   
-                this.$store.commit('SET_URL',urlSave);
+            if(urlSave !== undefined && urlSave !== null){
+                console.log('跑到这');   
+                this.$store.commit('SET_URL',JSON.parse(urlSave));
                 this.$store.commit('SET_HAS_PLAY',true);
             }
         }
