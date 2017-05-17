@@ -102,14 +102,14 @@ $BaseFontSize:75;
 }
 
 #app {
-    overflow-y: scroll;
+    overflow: hidden;
 }
 
 @font-face {
     font-family: 'icon_RB';
     /* project id 295136 */
-    src: url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.eot');
-    src: url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.woff') format('woff'), url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.ttf') format('truetype'), url('https://at.alicdn.com/t/font_x8yuaobdd5kx1or.svg#icon_RB') format('svg');
+    src: url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.eot');
+    src: url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.woff') format('woff'), url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.ttf') format('truetype'), url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.svg#icon_RB') format('svg');
 }
 
 .iconfont {
@@ -282,6 +282,10 @@ $BaseFontSize:75;
 
 
 /*---------------------------Common Style------------------------*/
+
+.main_content_wrap {
+    margin-top: computeSize(65);
+}
 
 .main_content_wrap.isPlay {
     margin-bottom: computeSize(170);
@@ -479,7 +483,7 @@ $BaseFontSize:75;
         }
     }
     .item_list {
-        margin-top: computeSize(10);
+        margin-top: - computeSize(65);
         .item_list_panel {
             height: computeSize(160);
             background: $bgColorWhite;
@@ -549,45 +553,46 @@ $BaseFontSize:75;
 
 .channel_wrap {
     position: relative;
-    .channel_wrap_item {
-        padding: computeSize(20);
-        background: #fff;
-        margin: computeSize(10);
-        border-radius: computeSize(10);
-        .channel_wrap_item_img {
-            width: computeSize(200);
-            height: computeSize(200);
-            img {
-                width: 100%;
-            }
+}
+
+.channel_wrap_item {
+    padding: computeSize(20);
+    background: #fff;
+    margin: computeSize(10);
+    border-radius: computeSize(10);
+    .channel_wrap_item_img {
+        width: computeSize(200);
+        height: computeSize(200);
+        img {
+            width: 100%;
         }
-        .channel_wrap_content {
-            width: 65%;
-            font-size: computeSize(24);
-            .title {
-                line-height: computeSize(70);
-                height: computeSize(70);
-                overflow: hidden;
-                text-overflow: ellipsis;
-                width: 100%;
-                display: block;
-                white-space: nowrap;
-                font-size: computeSize(36);
-            }
-            .author,
-            .last_update,
-            .update_time {
-                line-height: computeSize(40);
-                height: computeSize(40);
-                overflow: hidden;
-                text-overflow: ellipsis;
-                width: 100%;
-                display: block;
-                white-space: nowrap;
-            }
-            .update_time {
-                text-align: right;
-            }
+    }
+    .channel_wrap_content {
+        width: 65%;
+        font-size: computeSize(24);
+        .title {
+            line-height: computeSize(70);
+            height: computeSize(70);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
+            white-space: nowrap;
+            font-size: computeSize(36);
+        }
+        .author,
+        .last_update,
+        .update_time {
+            line-height: computeSize(40);
+            height: computeSize(40);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
+            white-space: nowrap;
+        }
+        .update_time {
+            text-align: right;
         }
     }
 }
@@ -602,9 +607,22 @@ $BaseFontSize:75;
     -webkit-transform: translate3d(0, 0, 0);
     transition: transform .1s ease-in-out;
     -webkit-transition: -webkit-transform .1s ease-in-out;
-    div {
-        padding: 10px;
-        background: #fff;
-        margin: 5px;
+    margin-top: computeSize(60);
+}
+
+
+/*-----------------------Nav------------------------*/
+
+.nav_html {
+    position: fixed;
+    height: computeSize(60);
+    width: 100%;
+    z-index: 990;
+    background: $bgColorWhite;
+    span {
+        display: inline-block;
+        color: #000;
+        padding-left: 10px;
+        line-height: computeSize(60);
     }
 }

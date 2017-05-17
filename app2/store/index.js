@@ -12,7 +12,8 @@ const state = {
     hasPlay: false,
     isStop: false,
     toast: false,
-    msg: '这是一个神奇的事情'
+    msg: '这是一个神奇的事情',
+    IS_PC: false
 };
 
 export default new Vuex.Store({

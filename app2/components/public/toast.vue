@@ -8,8 +8,8 @@
             </div>
             <div class="line"></div>
             <div class="btnWrap flex-left">
-                <span @touchstart = "confirm_start" @touchend="confirm_end" id="confirmBtn">确定</span>
-                <span @touchstart = "cancel_start" @touchend="cancel_end" id= "cancelBtn">取消</span>
+                <span @touchstart = "confirm_start" @touchend="confirm_end" id="confirmBtn" @click = "confirm_end">确定</span>
+                <span @touchstart = "cancel_start" @touchend="cancel_end" id= "cancelBtn" @click = "cancel_end">取消</span>
             </div>
         </div>
     </div>

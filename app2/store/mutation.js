@@ -3,7 +3,8 @@ import {
     SET_HAS_PLAY,
     SET_IS_STOP,
     HAS_DONE,
-    TOAST_STATE
+    TOAST_STATE,
+    IS_PC
 } from './mutation_type';
 
 const Mutations = {
@@ -22,6 +23,9 @@ const Mutations = {
     [TOAST_STATE](state, stateObj) {
         state.toast = stateObj.bol;
         state.msg = stateObj.msg;
+    },
+    [IS_PC](state, bool) {
+        state.IS_PC = bool;
     }
 }
 

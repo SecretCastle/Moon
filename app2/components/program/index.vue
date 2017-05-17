@@ -25,13 +25,14 @@
         },
         created(){
             this.chanelId = this.$route.params.id;
-            this.$store.commit('HAS_DONE',false);
+            
         },
         mounted(){
+            this.$store.commit('HAS_DONE',false);
             /**
                 多请求处理
              */
-            Public.MultiRequest(`/channelondemands/${this.chanelId}`,`/channelondemands/${this.chanelId}/programs/order/0/curpage/1/pagesize/10 `).then((res)=>{
+            Public.MultiRequest(`/channelondemands/${this.chanelId}`,`/channelondemands/${this.chanelId}/programs/order/0/curpage/1/pagesize/10`).then((res)=>{
                 if(res){
                     this.$store.commit('HAS_DONE',true);
                     this.reqData = [...res];

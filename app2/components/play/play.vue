@@ -63,9 +63,11 @@
                 这里需要优化，目前的bug，每次更新都要加载一次promise
              */
             playUrl(){
+                console.log('playUrl',this.playLinkState);
                 const loadUrl = setInterval(()=>{
                     if(this.playLinkState){
                         this.playLink = basUrl + this.getUrl.mediainfo.bitrates_url[0].file_path;
+                        //this.playLinkState = false;
                         clearInterval(loadUrl);
                     }else{
                         console.log('加载中');
@@ -83,19 +85,21 @@
                         this.playLinkState = true;
                     }
                 }).catch((err)=>{
-
+                    console.log(err);
                 });
             }
         },
         updated(){
+            
             this.playUrl();
+            console.log('update');
             Public.preLoadAudio(basUrl+this.getUrl.mediainfo.bitrates_url[0].file_path).then((res)=>{
                 if(res === 'success'){
                     //这里修改处理思路，根据res返回的‘success’，修改stroe中的状态，联动的带动播放
                     this.playLinkState = true;
                 }
             }).catch((err)=>{
-
+                console.log(err);
             });
             
         }

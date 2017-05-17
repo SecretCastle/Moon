@@ -1,8 +1,10 @@
 <template>
-    <div class="refresh_wrap" @touchstart="touchStart"  @touchmove="touchMove" @touchend="touchEnd">
-        <slot name="fresh">
-            
-        </slot>
+    <!--增加判断。PC or Mobile-->
+    <div class="refresh_wrap" ref="fresh_scroll" @mousewheel = "wheelFn" v-if="platform">
+        <slot name="fresh"></slot>
+    </div>
+    <div class="refresh_wrap" ref="fresh_scroll" @touchstart = "touchStart" @touchmove="touchMove" @touchend = "touchEnd" v-else>
+        <slot name="fresh"></slot>
     </div>
 </template>
 
@@ -13,7 +15,10 @@
                 startY:0,
                 moveY:0,
                 isMove:false,
-                scrollHeight:0
+                scrollHeight:0,
+                platform:false,  // false mobile , true pc
+                scrollTop:0,
+                hasData:true
             }
         },
         props:{
@@ -29,55 +34,65 @@
         },
         created(){
             this.$store.commit('HAS_DONE',true);
-        
+            this.platform = this.$store.state.IS_PC;
         },
         mounted(){
             this.scrollHeight = this.$el.scrollHeight;
+            window.addEventListener('scroll',this.scrollFn);
         },
         updated(){
             this.scrollHeight = this.$el.scrollHeight;
         },
         methods:{
+            wheelFn(e){
+                if(e.deltaY > 0){ //down
+                    this.PublicFn();
+                    this.isMove = true;
+                }
+            },
             touchStart(e){
-                //e.preventDefault();
                 this.isMove = true;
                 this.startY = e.touches[0].pageY;
-                console.log(this,this.scrollType);
+                // console.log('touchstart',this.startY,this.scrollTop,this.scrollHeight);
             },
             touchMove(e){
-                //e.preventDefault();
-                if(!this.isMove){
+               if(!this.isMove){
                     return;
-                }
-                this.moveY = e.touches[0].pageY - this.startY;
-                if(this.scrollType === 'bottomTotop'){
-                    if(this.moveY  < 100 && document.body.scrollTop === 0){
-                        this.$el.style.transform = `translate3d(0,${this.moveY}px,0)`;
-                        this.$el.style.webkitTransform = `translate3d(0,${this.moveY}px,0)`;
-                    }
-                }
+               }
+               this.$el.style.transform = "translate3d(0,-50px,0)";
+               this.$el.style.transition = "transform 0.3s ease-in-out";
             },
             touchEnd(e){
-                if(!this.isMove){
-                    return;
-                }
-                if(this.scrollType === 'bottomTotop'){
-                    this.$el.style.transform = `translate3d(0,0,0)`;
-                    this.$el.style.webkitTransform = `translate3d(0,0,0)`;
-                    console.log('touch end',document.body.scrollTop,this.moveY);
-                    if(document.body.scrollTop === 0){
-                         this.onRefresh();
-                    }
-                   
-                   
-                }else if(this.scrollType === 'topTobottom'){
-                    console.log(document.body.scrollTop,this.scrollHeight-100);
-                    if(document.body.scrollTop > this.scrollHeight - 1500){
-                        //when topTobottom
+                this.$el.style.transform = "translate3d(0,0,0)";
+                this.$el.style.transition = "transform 0.3s ease-in-out";
+                let minusVal = this.scrollHeight - document.documentElement.clientHeight + 65 ;
+                console.log(minusVal,this.scrollHeight,this.scrollTop);
+                if(this.scrollTop === minusVal ){
+                    if(this.hasData){
                         this.onRefresh();
                     }
                 }
+            },
+            scrollFn(){
+                this.scrollTop = document.body.scrollTop;
+            },
+            noMoreFn(bool){
+                this.hasData = bool;
+                console.log(this.hasData);
+            },
+            /* PC */
+            PublicFn(){
+                let minusVal = this.scrollHeight - document.documentElement.clientHeight + 64 ;
+                console.log(minusVal,this.scrollHeight,this.scrollTop);
+                if(this.scrollTop === minusVal){
+                    if(this.hasData){
+                        this.onRefresh();
+                        //console.log(this.scrollHeight,this.scrollTop,this.$el.offsetHeight,this.$el.clientHeight,document.documentElement.clientHeight);
+                    }   
+                }
             }
+
+            /* Mobile */
         }
     }    
 </script>

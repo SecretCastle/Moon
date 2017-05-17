@@ -3,7 +3,7 @@
         
         <!--顶部图片-->
         <!--参数 => isDelay , delayTime-->
-        <swiper :img-data="imgData">
+        <swiper :img-data="imgData" :delay-time="2000" :is-delay = "true">
             <div slot="swiper_img_slot" class="swiper_img" v-for = "item in imgData" :key = "item.id">
                 <img :src="item.thumbs.large_thumb" />
             </div>

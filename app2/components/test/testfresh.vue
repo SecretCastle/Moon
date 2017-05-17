@@ -1,9 +1,13 @@
 <template>
-    <re-fresh :on-refresh="onRefresh">
+    <re-fresh :on-refresh="onRefresh" ref="scroll_ele">
         <div slot="fresh" v-for="item in list">{{item.name}}</div>
     </re-fresh>
 </template>
-
+<style lang="sass" scoped>
+    div{
+        padding:10px;
+    }
+</style>
 <script>
     import ReFresh from '../public/refresh';
     export default {
@@ -57,103 +61,8 @@
                 },{
                     id:'8',
                     name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                },{
-                    id:'1',
-                    name:'1'
-                },{
-                    id:'2',
-                    name:'2'
-                },{
-                    id:'3',
-                    name:'3'
-                },{
-                    id:'4',
-                    name:'4'
-                },{
-                    id:'5',
-                    name:'5'
-                },{
-                    id:'6',
-                    name:'6'
-                },{
-                    id:'7',
-                    name:'7'
-                },{
-                    id:'8',
-                    name:'8'
-                }]
+                }],
+                idx:0
             }
         },
         components:{
@@ -161,13 +70,12 @@
         },
         created(){
             this.$store.commit('HAS_DONE',true);
-        
         },
         methods:{
             onRefresh(){
                 this.$store.commit('HAS_DONE',false);
-                console.log('refresh');
                 setTimeout(()=>{
+                    console.log('refresh');
                     for(let i = 99; i < 110; i++){
                         this.list.push({
                             id:i,
@@ -175,7 +83,7 @@
                         });
                     }
                     this.$store.commit('HAS_DONE',true);
-                },2000);
+                },1000);
             }
         }
     }
