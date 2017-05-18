@@ -50,23 +50,23 @@
         methods:{
             onRefresh(){
                 this.indexStart += 1;
-                this.$store.commit('HAS_DONE',false);
+                //this.$store.commit('HAS_DONE',false);
                 if(this.totalData > this.nowCount){
                     axios.get(`/categories/${this.cateId}/channels/order/bydefault/0/attr/${this.attrId}/curpage/${this.indexStart}/pagesize/${this.indexPage}`).then(res=>{
                         if(res){
                             console.log(res);
-                            this.$store.commit('HAS_DONE',true);
+                            //this.$store.commit('HAS_DONE',true);
                             this.chenData = this.chenData.concat(res.data.data);
                             this.nowCount += res.data.data.length;
                         }
                     }).catch(err=>{
                         console.log(err);
-                        this.$store.commit('HAS_DONE',true);
+                        //this.$store.commit('HAS_DONE',true);
                     });
                 }else{
                     console.log('没有了');
                     this.$refs.chanel_scroll.noMoreFn(false);
-                    this.$store.commit('HAS_DONE',true);
+                    //this.$store.commit('HAS_DONE',true);
                     this.$store.commit('TOAST_STATE',{
                         bol:true,
                         msg:'没有数据了'

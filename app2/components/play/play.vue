@@ -37,7 +37,7 @@
                 return this.$store.state.playUrl;
             },
             isPlay(){
-                return this.$store.state.hasPlay
+                return this.$store.state.hasPlay;
             },
             isStop(){
                 return this.$store.state.isStop;

@@ -4,8 +4,8 @@
             <img src="../../assets/default.jpg" />
         </div>
         <div class="rightContentOfProgram">
-            <div class="program_title">{{this.infoData.data.data.title}}</div>
-            <div class="program_decsription">{{this.infoData.data.data.description}}</div>
+            <div class="program_title">{{data.data.data.title}}</div>
+            <div class="program_decsription">{{data.data.data.description}}</div>
             <!--<div class="program_author">作者：<span>陈方仲</span></div>-->
         </div>
     </div>
@@ -13,32 +13,32 @@
 <script>
     import Public from '../../utils/public';
     export default {
+        data(){
+            return {
+                data:{data:{data:{}}}
+            }
+        },
         props:{
-            infoData:{
-                type:Object,
-                require:true,
-                default(){  //保证传入的不为undefined
-                    return{
-                            data:{
-                            data:{
-                                title:'',
-                                description:'',
-                                thumbs:{
-                                    large_thumb:''
-                                }
-                            }
-                        }
-                    }
-                }
+            chanelId:{
+                type:String,
+                require:true
             }
         },
         updated(){
-            Public.preImgLoad(this.infoData.data.data.thumbs.large_thumb).then(res=>{
+            Public.preImgLoad(this.data.data.data.thumbs.large_thumb).then(res=>{
                 if(res){
                     this.$el.childNodes[0].childNodes[0].src=res.src;
                 }
             }).catch(err=>{
 
+            });
+        },
+        mounted(){
+            Public.MultiRequest(`/channelondemands/${this.chanelId}`).then(res=>{
+                this.$store.commit('HAS_PROGRAMINFO_DONE',true);
+                this.data= res[0];
+            }).catch(err=>{
+                console.log(err);
             });
         }
     }

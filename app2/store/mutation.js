@@ -4,7 +4,9 @@ import {
     SET_IS_STOP,
     HAS_DONE,
     TOAST_STATE,
-    IS_PC
+    IS_PC,
+    HAS_PROGRAMINFO_DONE,
+    HAS_PROGRAMLIST_DONE
 } from './mutation_type';
 
 const Mutations = {
@@ -26,6 +28,12 @@ const Mutations = {
     },
     [IS_PC](state, bool) {
         state.IS_PC = bool;
+    },
+    [HAS_PROGRAMINFO_DONE](state, bool) {
+        state.HAS_PROGRAMINFO_DONE_FLAG = bool;
+    },
+    [HAS_PROGRAMLIST_DONE](state, bool) {
+        state.HAS_PROGRAMLIST_DONE_FLAG = bool;
     }
 }
 

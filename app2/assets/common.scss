@@ -441,10 +441,15 @@ $BaseFontSize:75;
 
 .item_detail_wrap,
 .main_content_wrap {
-    position: relative;
+    height: 100%;
     .info_wrap {
-        height: computeSize(500);
+        position: absolute;
+        height: 40%;
         background: #4D5D8C;
+        top: computeSize(60);
+        left: 0;
+        width: 100%;
+        z-index: 2;
         .leftImgOfProgram {
             width: 50%;
             height: 100%;
@@ -483,7 +488,12 @@ $BaseFontSize:75;
         }
     }
     .item_list {
-        margin-top: - computeSize(65);
+        position: absolute;
+        top: 40%;
+        height: 60%;
+        overflow: scroll;
+        width: 100%;
+        left: 0;
         .item_list_panel {
             height: computeSize(160);
             background: $bgColorWhite;
