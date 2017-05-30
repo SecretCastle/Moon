@@ -32,6 +32,7 @@
                     this.$store.commit('SET_URL',this.itemData);
                     this.$store.commit('SET_HAS_PLAY',true);
                     localStorage.setItem('saveUrl',JSON.stringify(this.itemData));
+                    this.$router.push({path:`/playboard/${this.itemData.id}`});
                 }else{
                      this.$store.commit('TOAST_STATE',{
                         bol:true,

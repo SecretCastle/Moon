@@ -1,8 +1,12 @@
 var path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+
+const process = require('process');
+console.log(process.env.NODE_ENV);
 
 module.exports = {
-    entry: './app2/main.js', //看app或app2 ，这里改下就行
+    entry: "./app2/main.js", //看app或app2 ，这里改下就行
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
@@ -10,6 +14,12 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.css', '.scss', '.vue']
     },
+    // externals: {
+    //     'vue': 'Vue',
+    //     'vue-router': 'VueRouter',
+    //     'vuex': 'Vuex',
+    //     'axios': 'axios'
+    // },
     devServer: {
         proxy: {
             '/categories': {
@@ -37,7 +47,7 @@ module.exports = {
                 }
             },
             '/programs': {
-                target: 'http://api2.qingting.fm/v6/media/programs',
+                target: 'http://api2.qingting.fm/v6/media',
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: {
@@ -86,7 +96,13 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.BannerPlugin('This file is created by SecretCastle')
+        new webpack.BannerPlugin('This file is created by SecretCastle'),
+        new UglifyJsPlugin({
+            beautify: false,
+            compress: {
+                warnings: false
+            }
+        })
     ],
 
 };

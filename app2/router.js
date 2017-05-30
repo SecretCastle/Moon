@@ -7,8 +7,7 @@ import Program from './components/program/index';
 import Recommend from './components/recommend/index';
 import Categories from './components/categories';
 import Channel from './components/channel/index';
-import Refresh from './components/test/testfresh';
-
+import PlayBoard from './components/playcontrol/playboard';
 
 const Routes = new VueRouter({
     routes: [{
@@ -36,8 +35,12 @@ const Routes = new VueRouter({
             component: Channel
         },
         {
-            path: '/test/refresh',
-            component: Refresh
+            path: '/playboard',
+            component: PlayBoard
+        },
+        {
+            path: '/playboard/:id',
+            component: PlayBoard
         }
     ]
 });

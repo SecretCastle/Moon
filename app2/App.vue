@@ -48,7 +48,6 @@
                     this.$store.commit('IS_PC',true);
                 }
             }
-            
         }
     }
 </script>

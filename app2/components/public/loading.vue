@@ -1,6 +1,6 @@
 <template>
     <div class="loading" v-show = "!isLoading">
-        <div class="iconfont">&#xe642;</div>
+        <div class="iconfont load">&#xe61e;</div>
     </div>
 </template>
 <script>

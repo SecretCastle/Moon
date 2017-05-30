@@ -11,7 +11,7 @@
         <div class="tabSelect">
             <router-link to="/recommend/1011">精品</router-link>
             <router-link to="/categories">分类</router-link>
-            <router-link to="/test/refresh">测试</router-link>
+            <router-link to="/playboard">测试</router-link>
             <router-link to="">其他</router-link>
         </div>
         <home-item-group :home-data="homeData"></home-item-group>

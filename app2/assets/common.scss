@@ -108,8 +108,8 @@ $BaseFontSize:75;
 @font-face {
     font-family: 'icon_RB';
     /* project id 295136 */
-    src: url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.eot');
-    src: url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.woff') format('woff'), url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.ttf') format('truetype'), url('https://at.alicdn.com/t/font_d40kaovpzpa54s4i.svg#icon_RB') format('svg');
+    src: url('https://at.alicdn.com/t/font_v500k6422v4mquxr.eot');
+    src: url('https://at.alicdn.com/t/font_v500k6422v4mquxr.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_v500k6422v4mquxr.woff') format('woff'), url('https://at.alicdn.com/t/font_v500k6422v4mquxr.ttf') format('truetype'), url('https://at.alicdn.com/t/font_v500k6422v4mquxr.svg#icon_RB') format('svg');
 }
 
 .iconfont {
@@ -190,17 +190,17 @@ $BaseFontSize:75;
     left: 0;
     top: 0;
     text-align: center;
-    div {
+    .load {
         font-size: computeSize(180);
         background: none;
-        animation: circle 1s linear infinite forwards;
+        animation: circle 2s linear infinite forwards;
     }
     @keyframes circle {
         from {
             transform: rotate(0)
         }
         to {
-            transform: rotate(180deg)
+            transform: rotate(360deg);
         }
     }
     @-webkit-keyframes circle {
@@ -208,7 +208,7 @@ $BaseFontSize:75;
             transform: rotate(0)
         }
         to {
-            transform: rotate(180deg)
+            transform: rotate(360deg);
         }
     }
 }
@@ -634,5 +634,84 @@ $BaseFontSize:75;
         color: #000;
         padding-left: 10px;
         line-height: computeSize(60);
+    }
+}
+
+
+/*-------------------------Play Board----------------*/
+
+.play_board_main {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .meng {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url('http://pic.qingting.fm/goods/2017/05/08/38efd7f676f66c9ad74d7aa3370fc141.jpg!large');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+        -webkit-filter: blur(15px);
+        filter: blur(15px);
+    }
+    .mengColor {
+        background: #333;
+        opacity: 0.8;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.play_board_content {
+    position: relative;
+    margin-top: 60px;
+    color: #fff;
+    padding: computeSize(50);
+    .play_title {
+        text-align: center;
+        font-size: computeSize(48);
+    }
+    .play_author {
+        text-align: center;
+        font-size: computeSize(32);
+        padding: 15px 0;
+    }
+    .bigImg {
+        width: computeSize(550);
+        height: computeSize(550);
+        margin: computeSize(80) auto;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.play_board_control {
+    position: relative;
+    .menuGroup {
+        padding: computeSize(80) 0;
+        text-align: center;
+        span {
+            color: #fff;
+            display: inline-block;
+            width: computeSize(100);
+            height: computeSize(100);
+            border: 1px solid #fff;
+            line-height: computeSize(100);
+            border-radius: 50%;
+            font-size: computeSize(40);
+        }
+    }
+    .play_board_progress {
+        height: 2px;
+        progress {
+            -webkit-appearance: none;
+            height: 1px;
+            display: block;
+        }
     }
 }
