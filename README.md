@@ -2,15 +2,13 @@
 
 Listen Radio in Office
 
-~~~>.>~~~ 
+>.<
 
 ## 使用
 
 1、```git clone```
 
-2、
-
-```npm run build``` 生产模式
+2、```npm run build``` 生产模式
 
 ```npm run dev```开发模式
 
