@@ -26,82 +26,82 @@
 
     import Public from '../../utils/public';
     export default {
-        data(){
+        data() {
             return {
-                playLinkState:false,
-                playLink:''
+                playLinkState: false,
+                playLink: ''
             }
         },
-        computed:{
-            getUrl(){
+        computed: {
+            getUrl() {
                 return this.$store.state.playUrl;
             },
-            isPlay(){
+            isPlay() {
                 return this.$store.state.hasPlay;
             },
-            isStop(){
+            isStop() {
                 return this.$store.state.isStop;
             }
         },
-        methods:{
-            prevBtn(){
+        methods: {
+            prevBtn() {
                 console.log('prev');
             },
-            playBtn(){
-                if(this.isStop){
+            playBtn() {
+                if (this.isStop) {
                     this.$el.childNodes[0].play();
-                    this.$store.commit('SET_IS_STOP',false);
-                }else{
+                    this.$store.commit('SET_IS_STOP', false);
+                } else {
                     this.$el.childNodes[0].pause();
-                    this.$store.commit('SET_IS_STOP',true);
+                    this.$store.commit('SET_IS_STOP', true);
                 }
             },
-            nextBtn(){
+            nextBtn() {
                 console.log('next');
             },
             /**
                 这里需要优化，目前的bug，每次更新都要加载一次promise
              */
-            playUrl(){
-                console.log('playUrl',this.playLinkState);
-                const loadUrl = setInterval(()=>{
-                    if(this.playLinkState){
+            playUrl() {
+                console.log('playUrl', this.playLinkState);
+                const loadUrl = setInterval(() => {
+                    if (this.playLinkState) {
                         this.playLink = basUrl + this.getUrl.mediainfo.bitrates_url[0].file_path;
                         //this.playLinkState = false;
                         clearInterval(loadUrl);
-                    }else{
+                    } else {
                         console.log('加载中');
                     }
-                },500);
+                }, 500);
             }
-            
+
         },
-        mounted(){
-            if(this.getUrl){
+        mounted() {
+            if (this.getUrl) {
                 this.playUrl();
-                Public.preLoadAudio(basUrl+this.getUrl.mediainfo.bitrates_url[0].file_path).then((res)=>{
-                    if(res === 'success'){
+                Public.preLoadAudio(basUrl + this.getUrl.mediainfo.bitrates_url[0].file_path).then((res) => {
+                    if (res === 'success') {
                         //这里修改处理思路，根据res返回的‘success’，修改stroe中的状态，联动的带动播放
                         this.playLinkState = true;
                     }
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log(err);
                 });
             }
         },
-        updated(){
-            
+        updated() {
+
             this.playUrl();
             console.log('update');
-            Public.preLoadAudio(basUrl+this.getUrl.mediainfo.bitrates_url[0].file_path).then((res)=>{
-                if(res === 'success'){
+            Public.preLoadAudio(basUrl + this.getUrl.mediainfo.bitrates_url[0].file_path).then((res) => {
+                if (res === 'success') {
                     //这里修改处理思路，根据res返回的‘success’，修改stroe中的状态，联动的带动播放
                     this.playLinkState = true;
                 }
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.log(err);
             });
-            
+
         }
     }
 </script>

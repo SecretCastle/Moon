@@ -14,24 +14,29 @@
     import Toast from './components/public/toast';
     import NavBar from './components/public/nav';
     export default {
-        data(){
+        data() {
             return {
-                url:"http://upod.qingting.fm/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a"
+                url: "http://upod.qingting.fm/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a"
             }
         },
-        components:{
+        components: {
             PlayArea,
             Loading,
             Toast,
             NavBar
         },
-        created(){
+        created() {
             //检查是否存在storage
-            localStorage.clear();
+            localStorage.removeItem('saveUrl');
+            /*
+                目前保存的localstorage
+                saveUrl，playcontentImg
+
+            */
             let urlSave = localStorage.getItem('saveUrl');
-            if(urlSave !== undefined && urlSave !== null){
-                this.$store.commit('SET_URL',JSON.parse(urlSave));
-                this.$store.commit('SET_HAS_PLAY',true);
+            if (urlSave !== undefined && urlSave !== null) {
+                this.$store.commit('SET_URL', JSON.parse(urlSave));
+                this.$store.commit('SET_HAS_PLAY', true);
             };
 
             //判断手机还是PC
@@ -42,10 +47,10 @@
             for (var i = 0; i < mobileAgent.length; i++) {
                 if (browser.indexOf(mobileAgent[i]) != -1) {
                     isMobile = true;
-                    this.$store.commit('IS_PC',false);
+                    this.$store.commit('IS_PC', false);
                     break;
-                }else{
-                    this.$store.commit('IS_PC',true);
+                } else {
+                    this.$store.commit('IS_PC', true);
                 }
             }
         }
@@ -54,5 +59,4 @@
 
 <style lang="sass">
     @import './assets/common.scss';
-    
 </style>

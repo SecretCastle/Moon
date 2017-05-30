@@ -1,4 +1,6 @@
 import axios from 'axios';
+import nodeUtil from 'util';
+
 
 const Public = {
     /**
@@ -110,6 +112,32 @@ const Public = {
             secs = '0' + secs;
         }
         return `${min}分${secs}秒`;
+    },
+
+    colorfulDebugConsole(type, color, msg) {
+        let time = nodeUtil.format(
+            '%d:%d:%d',
+            new Date().getHours(),
+            new Date().getMinutes(),
+            new Date().getSeconds()
+        );
+        let consoleTmpl = `%c ${time}-> %o`;
+        switch (type) {
+            case 'log':
+                console.log(consoleTmpl, `color:${color}`, msg);
+                break;
+            case 'info':
+                console.info(consoleTmpl, `color:${color}`, msg);
+                break;
+            case 'error':
+                console.error(consoleTmpl, `color:${color}`, msg);
+                break;
+            case 'warn':
+                console.warn(consoleTmpl, `color:${color}`, msg);
+                break;
+            default:
+                break;
+        }
     }
 }
 

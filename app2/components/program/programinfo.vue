@@ -13,31 +13,38 @@
 <script>
     import Public from '../../utils/public';
     export default {
-        data(){
+        data() {
             return {
-                data:{data:{data:{}}}
-            }
-        },
-        props:{
-            chanelId:{
-                type:String,
-                require:true
-            }
-        },
-        updated(){
-            Public.preImgLoad(this.data.data.data.thumbs.large_thumb).then(res=>{
-                if(res){
-                    this.$el.childNodes[0].childNodes[0].src=res.src;
+                data: {
+                    data: {
+                        data: {}
+                    }
                 }
-            }).catch(err=>{
+            }
+        },
+        props: {
+            chanelId: {
+                type: String,
+                require: true
+            }
+        },
+        updated() {
+            Public.preImgLoad(this.data.data.data.thumbs.large_thumb).then(res => {
+                if (res) {
+                    this.$el.childNodes[0].childNodes[0].src = res.src;
+                }
+            }).catch(err => {
 
             });
         },
-        mounted(){
-            Public.MultiRequest(`/channelondemands/${this.chanelId}`).then(res=>{
-                this.$store.commit('HAS_PROGRAMINFO_DONE',true);
-                this.data= res[0];
-            }).catch(err=>{
+        mounted() {
+            Public.MultiRequest(`/channelondemands/${this.chanelId}`).then(res => {
+                this.$store.commit('HAS_PROGRAMINFO_DONE', true);
+                //Public.colorfulDebugConsole('log', 'blue', res[0].data.data.thumbs.large_thumb);
+                //this.$store.commit('PLAYCONTENT_PIC', res[0].data.data.thumbs.large_thumb);
+                localStorage.setItem('playcontentImg', res[0].data.data.thumbs.large_thumb)
+                this.data = res[0];
+            }).catch(err => {
                 console.log(err);
             });
         }

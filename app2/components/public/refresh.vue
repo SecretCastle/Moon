@@ -10,111 +10,109 @@
 
 <script>
     export default {
-        data(){
+        data() {
             return {
-                startY:0,
-                moveY:0,
-                isMove:false,
-                scrollHeight:0,
-                platform:false,  // false mobile , true pc
-                scrollTop:0,
-                hasData:true
+                startY: 0,
+                moveY: 0,
+                isMove: false,
+                scrollHeight: 0,
+                platform: false, // false mobile , true pc
+                scrollTop: 0,
+                hasData: true
             }
         },
-        props:{
-            scrollType:{
-                type:String,
-                require:false,
-                default:'topTobottom' //滚动刷新
+        props: {
+            scrollType: {
+                type: String,
+                require: false,
+                default: 'topTobottom' //滚动刷新
             },
-            onRefresh:{
-                type:Function,
-                require:true
+            onRefresh: {
+                type: Function,
+                require: true
             },
-            innerFresh:{
-                type:Boolean,
-                require:false,
-                default:false
+            innerFresh: {
+                type: Boolean,
+                require: false,
+                default: false
             },
-            scrollVal:{
-                type:Number,
-                require:false
+            scrollVal: {
+                type: Number,
+                require: false
             }
         },
-        created(){
-            this.$store.commit('HAS_DONE',true);
+        created() {
+            this.$store.commit('HAS_DONE', true);
             this.platform = this.$store.state.IS_PC;
         },
-        mounted(){
-            console.log("fresh",this);
+        mounted() {
             this.scrollHeight = this.$el.scrollHeight;
-            window.addEventListener('scroll',this.scrollFn);
+            window.addEventListener('scroll', this.scrollFn);
         },
-        updated(){
+        updated() {
             this.scrollHeight = this.$el.scrollHeight;
         },
-        methods:{
-            wheelFn(e){
-                if(e.deltaY > 0){ //down
+        methods: {
+            wheelFn(e) {
+                if (e.deltaY > 0) { //down
                     this.PublicFn();
                     this.isMove = true;
                 }
             },
-            touchStart(e){
+            touchStart(e) {
                 this.isMove = true;
                 this.startY = e.touches[0].pageY;
                 // console.log('touchstart',this.startY,this.scrollTop,this.scrollHeight);
             },
-            touchMove(e){
-               if(!this.isMove){
+            touchMove(e) {
+                if (!this.isMove) {
                     return;
-               }
-               this.$el.style.transform = "translate3d(0,-50px,0)";
-               this.$el.style.transition = "transform 0.3s ease-in-out";
+                }
+                this.$el.style.transform = "translate3d(0,-50px,0)";
+                this.$el.style.transition = "transform 0.3s ease-in-out";
             },
-            touchEnd(e){
+            touchEnd(e) {
                 this.$el.style.transform = "translate3d(0,0,0)";
                 this.$el.style.transition = "transform 0.3s ease-in-out";
-                 let minusVal;
-                if(this.innerFresh){
+                let minusVal;
+                if (this.innerFresh) {
                     minusVal = Math.round(this.scrollHeight - document.documentElement.clientHeight * 0.6 + 60);
                     this.scrollTop = this.scrollVal;
-                }else{
-                    minusVal = this.scrollHeight - document.documentElement.clientHeight + 65 ;
+                } else {
+                    minusVal = this.scrollHeight - document.documentElement.clientHeight + 65;
                 }
-                console.log(minusVal,this.scrollHeight,this.scrollTop);
-                if( this.scrollTop > minusVal - 100 ){
-                    if(this.hasData){
+                if (this.scrollTop > minusVal - 100) {
+                    if (this.hasData) {
                         this.onRefresh();
                     }
                 }
             },
-            scrollFn(){
+            scrollFn() {
                 this.scrollTop = document.body.scrollTop;
             },
-            noMoreFn(bool){
+            noMoreFn(bool) {
                 this.hasData = bool;
                 console.log(this.hasData);
             },
             /* PC */
-            PublicFn(){
-                 let minusVal;
-                if(this.innerFresh){
+            PublicFn() {
+                let minusVal;
+                if (this.innerFresh) {
                     minusVal = Math.round(this.scrollHeight - document.documentElement.clientHeight * 0.6 + 60);
                     this.scrollTop = this.scrollVal;
-                }else{
-                    minusVal = this.scrollHeight - document.documentElement.clientHeight + 64 ;
+                } else {
+                    minusVal = this.scrollHeight - document.documentElement.clientHeight + 64;
                 }
-                console.log(minusVal,this.scrollHeight,this.scrollTop);
-                if( this.scrollTop > minusVal - 100){
-                    if(this.hasData){
+                console.log(minusVal, this.scrollHeight, this.scrollTop);
+                if (this.scrollTop > minusVal - 100) {
+                    if (this.hasData) {
                         this.onRefresh();
                         //console.log(this.scrollHeight,this.scrollTop,this.$el.offsetHeight,this.$el.clientHeight,document.documentElement.clientHeight);
-                    }   
+                    }
                 }
             }
 
             /* Mobile */
         }
-    }    
+    }
 </script>

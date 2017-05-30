@@ -15,7 +15,8 @@ const state = {
     msg: '这是一个神奇的事情',
     IS_PC: false,
     HAS_PROGRAMINFO_DONE_FLAG: false,
-    HAS_PROGRAMLIST_DONE_FLAG: false
+    HAS_PROGRAMLIST_DONE_FLAG: false,
+    PLAYCONTENT_PIC: ''
 };
 
 export default new Vuex.Store({

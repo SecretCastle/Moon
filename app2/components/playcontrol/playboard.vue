@@ -3,7 +3,7 @@
         <div class="meng"></div>
         <div class="mengColor"></div>
         <play-content :content-data="this.data"></play-content>
-        <play-control></play-control>
+        <play-control :control-data="this.data"></play-control>
     </div>
 </template>
 
@@ -11,30 +11,32 @@
     import PlayControl from './playboard_control';
     import PlayContent from './playboard_content';
     import axios from 'axios';
-    export default  {
-        data(){
+    import Public from '../../utils/public';
+    export default {
+        data() {
             return {
-                id:null,
-                data:{}
+                id: null,
+                data: {}
             }
         },
-        created(){
-            this.$store.commit('HAS_DONE',false);
+        created() {
+            this.$store.commit('HAS_DONE', false);
             this.id = this.$route.params.id;
         },
-        mounted(){
-            axios.get(`/programs/${this.id}`).then(res=>{
-                console.log(res);
-                if(res){
-                    this.$store.commit('HAS_DONE',true);
+        mounted() {
+            axios.get(`/programs/${this.id}`).then(res => {
+                //Public.colorfulDebugConsole('log', 'blue', res);
+                if (res) {
+                    this.$store.commit('HAS_DONE', true);
                     this.data = res.data.data;
+                    Public.colorfulDebugConsole('log', 'blue', this.data);
                 }
 
-            }).catch(err=>{
+            }).catch(err => {
 
             });
         },
-        components:{
+        components: {
             PlayControl,
             PlayContent
         }

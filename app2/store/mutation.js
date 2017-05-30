@@ -6,7 +6,8 @@ import {
     TOAST_STATE,
     IS_PC,
     HAS_PROGRAMINFO_DONE,
-    HAS_PROGRAMLIST_DONE
+    HAS_PROGRAMLIST_DONE,
+    PLAYCONTENT_PIC
 } from './mutation_type';
 
 const Mutations = {
@@ -34,6 +35,9 @@ const Mutations = {
     },
     [HAS_PROGRAMLIST_DONE](state, bool) {
         state.HAS_PROGRAMLIST_DONE_FLAG = bool;
+    },
+    [PLAYCONTENT_PIC](state, pic_url) {
+        state.PLAYCONTENT_PIC = pic_url;
     }
 }
 
