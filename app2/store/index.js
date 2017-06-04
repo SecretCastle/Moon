@@ -16,7 +16,8 @@ const state = {
     IS_PC: false,
     HAS_PROGRAMINFO_DONE_FLAG: false,
     HAS_PROGRAMLIST_DONE_FLAG: false,
-    PLAYCONTENT_PIC: ''
+    PLAYCONTENT_PIC: '',
+    PLAYAREASHOW: false
 };
 
 export default new Vuex.Store({

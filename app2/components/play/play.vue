@@ -1,6 +1,6 @@
 <template>
-    <div class="play_panel" :class="[getUrl !== null ? 'isPlay':'']">
-        <audio :src="playLink" id="Muisc" autoplay></audio>
+    <div class="play_panel" :class="[PLAYAREASHOW ? 'isPlay':'']" @click="toPlayPanel">
+        <audio :src="playLink" id="Music" autoplay></audio>
         <div class="play_mid_panel flex-left"> 
             <div class="panel_left flex-left">
                 <div class="play_urlImg">
@@ -41,6 +41,9 @@
             },
             isStop() {
                 return this.$store.state.isStop;
+            },
+            PLAYAREASHOW() {
+                return this.$store.state.PLAYAREASHOW;
             }
         },
         methods: {

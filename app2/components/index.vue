@@ -11,7 +11,7 @@
         <div class="tabSelect">
             <router-link to="/recommend/1011">精品</router-link>
             <router-link to="/categories">分类</router-link>
-            <router-link to="/playboard">测试</router-link>
+            <router-link to="">其他</router-link>
             <router-link to="">其他</router-link>
         </div>
         <home-item-group :home-data="homeData"></home-item-group>
@@ -27,48 +27,48 @@
     import HomeItemGroup from './home_item/homeitemgroup';
 
     export default {
-        data(){
-            return{
-                imgData:[{
+        data() {
+            return {
+                imgData: [{
                     "thumbs": {
                         "large_thumb": "https://img.alicdn.com/imgextra/i1/786678272/TB2Ni_eXghJc1FjSZFDXXbvnFXa_!!786678272.jpg"
                     }
                 }],
-                homeData:[]
+                homeData: []
             }
         },
-        components:{
+        components: {
             Swiper,
-            "home-item-group":HomeItemGroup
+            "home-item-group": HomeItemGroup
         },
-        mounted(){
-            this.$store.commit('HAS_DONE',false);
-            axios.get('/section/0').then((res)=>{
-                if(res){
+        mounted() {
+            this.$store.commit('HAS_DONE', false);
+            axios.get('/section/0').then((res) => {
+                if (res) {
                     //console.log("初始化的数据",res);
                     this.imgData = res.data.data[0].recommends;
-                    this.$store.commit('HAS_DONE',true);
+                    this.$store.commit('HAS_DONE', true);
                     this.homeData = this.filterData(res.data.data);
                 }
-            }).catch((err)=>{
+            }).catch((err) => {
                 console.warn(err);
             });
         },
-        methods:{
-            testClick(){
-                this.$store.commit('SET_URL','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
-                this.$store.commit('SET_HAS_PLAY',true);
-                localStorage.setItem('saveUrl','/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
+        methods: {
+            testClick() {
+                this.$store.commit('SET_URL', '/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
+                this.$store.commit('SET_HAS_PLAY', true);
+                localStorage.setItem('saveUrl', '/m4a/5902fe3f7cb8917264810f95_7231066_24.m4a');
             },
             /**
             过滤不包括brief_name的data
             */
-            filterData(data){
-                return data.filter( item => item.brief_name !== "");
+            filterData(data) {
+                return data.filter(item => item.brief_name !== "");
             }
         },
-        computed:{
-            isPlay(){
+        computed: {
+            isPlay() {
                 return this.$store.state.playUrl;
             }
         }
@@ -76,5 +76,5 @@
 </script>
 
 <style lang="sass">
-    
+
 </style>

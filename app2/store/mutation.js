@@ -7,7 +7,8 @@ import {
     IS_PC,
     HAS_PROGRAMINFO_DONE,
     HAS_PROGRAMLIST_DONE,
-    PLAYCONTENT_PIC
+    PLAYCONTENT_PIC,
+    PLAYAREASHOW
 } from './mutation_type';
 
 const Mutations = {
@@ -38,8 +39,11 @@ const Mutations = {
     },
     [PLAYCONTENT_PIC](state, pic_url) {
         state.PLAYCONTENT_PIC = pic_url;
+    },
+    [PLAYAREASHOW](state, bool) {
+        state.PLAYAREASHOW = bool;
     }
-}
+};
 
 
 export default Mutations;

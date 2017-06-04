@@ -7,9 +7,10 @@
 <script>
     export default {
 
-        methods:{
-            back(){
-                this.$router.back(-1)
+        methods: {
+            back() {
+                this.$router.back(-1);
+                this.$store.commit('PLAYAREASHOW', true);
             }
         }
     }

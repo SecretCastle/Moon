@@ -7,14 +7,14 @@
 <script>
     export default {
         props: {
-            playDuration: {
-                type: Number,
+            playObject: {
+                type: Object,
                 require: true
             }
         },
         computed: {
             duration() {
-                return this.playDuration;
+                return this.playObject;
             }
         }
     }

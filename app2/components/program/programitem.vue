@@ -31,6 +31,7 @@
                     let playUrl = this.itemData.mediainfo.bitrates_url[0].file_path;
                     this.$store.commit('SET_URL', this.itemData);
                     this.$store.commit('SET_HAS_PLAY', true);
+                    this.$store.commit('PLAYAREASHOW', true);
                     localStorage.setItem('saveUrl', JSON.stringify(this.itemData));
                     this.$router.push({
                         path: `/playboard/${this.itemData.id}`

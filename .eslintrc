@@ -1,14 +1,27 @@
-{   
-    "parserOptions": {        //语言选项
-        "ecmaVersion":6,
-        "sourceType": "module"
-    },
-    "parser": "babel-eslint",  //解析器
+{
     "env": {
         "browser": true,
+        "commonjs": true,
+        "es6": true,
         "node": true
     },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "rules": {
-        "max-len": [1, 120, 2, {ignoreComments: true}],
+        "linebreak-style": "off", //ignore windows or unix LF problem
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-console": "off",
+        "max-len": [
+            1, 120, 2, { "ignoreComments": true }
+        ]
     }
 }

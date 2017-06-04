@@ -28,6 +28,7 @@
                 //Public.colorfulDebugConsole('log', 'blue', res);
                 if (res) {
                     this.$store.commit('HAS_DONE', true);
+                    this.$store.commit('PLAYAREASHOW', false);
                     this.data = res.data.data;
                     Public.colorfulDebugConsole('log', 'blue', this.data);
                 }

@@ -19,7 +19,7 @@ const Public = {
             };
             imgEle.onerror = function() {
                 reject('fail');
-            }
+            };
         });
         return promsie;
     },
@@ -38,10 +38,10 @@ const Public = {
                 //这里的修改处理思路
                 //resolve success，让调用与加载部分，处理播放状态
                 resolve('success');
-            }
+            };
             srcEle.onerror = function() {
                 reject('error');
-            }
+            };
         });
         return promsie;
     },
@@ -56,7 +56,7 @@ const Public = {
         let req = [];
 
         //this.CheckEachArgsOfArguments(args);
-        args.forEach((ele, index) => {
+        args.forEach((ele) => {
             req.push(this.RequestUrl(ele));
         });
 
@@ -90,7 +90,7 @@ const Public = {
     },
     CheckEachArgsOfArguments(arry) {
         console.log('get array', arry);
-        arry.forEach((ele, index) => {
+        arry.forEach((ele) => {
             if (typeof ele === 'object') {
                 throw `${ele} this is an Object, we need string`;
             }
@@ -114,6 +114,13 @@ const Public = {
         return `${min}分${secs}秒`;
     },
 
+    /**
+     * 炫彩console
+     * 
+     * @param {*} type 
+     * @param {*} color 
+     * @param {*} msg 
+     */
     colorfulDebugConsole(type, color, msg) {
         let time = nodeUtil.format(
             '%d:%d:%d',
@@ -139,6 +146,6 @@ const Public = {
                 break;
         }
     }
-}
+};
 
 export default Public;
