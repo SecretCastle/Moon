@@ -8,7 +8,10 @@ import {
     HAS_PROGRAMINFO_DONE,
     HAS_PROGRAMLIST_DONE,
     PLAYCONTENT_PIC,
-    PLAYAREASHOW
+    PLAYAREASHOW,
+    PLAYID,
+    NAVTITLE,
+    CATEGORIESDATA
 } from './mutation_type';
 
 const Mutations = {
@@ -42,6 +45,15 @@ const Mutations = {
     },
     [PLAYAREASHOW](state, bool) {
         state.PLAYAREASHOW = bool;
+    },
+    [PLAYID](state, id) {
+        state.PLAYID = id;
+    },
+    [NAVTITLE](state, title) {
+        state.NAVTITLE = title;
+    },
+    [CATEGORIESDATA](state, data) {
+        state.CATEGORIESDATA = data;
     }
 };
 

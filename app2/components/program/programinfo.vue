@@ -41,7 +41,7 @@
             Public.MultiRequest(`/channelondemands/${this.chanelId}`).then(res => {
                 this.$store.commit('HAS_PROGRAMINFO_DONE', true);
                 //Public.colorfulDebugConsole('log', 'blue', res[0].data.data.thumbs.large_thumb);
-                //this.$store.commit('PLAYCONTENT_PIC', res[0].data.data.thumbs.large_thumb);
+                this.$store.commit('PLAYCONTENT_PIC', res[0].data.data.thumbs.large_thumb);
                 localStorage.setItem('playcontentImg', res[0].data.data.thumbs.large_thumb)
                 this.data = res[0];
             }).catch(err => {

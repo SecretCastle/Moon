@@ -9,23 +9,17 @@
     import axios from 'axios';
 
     export default {
-        data(){
-            return {
-                resData:[]
-            }
-        },
-        components:{
+        components: {
             CateItem
         },
-        created(){
-            axios.get('/categories').then(res=>{
-                if(res){
-                    this.$store.commit('HAS_DONE',true);
-                    this.resData = res.data.data
-                }
-            }).catch(err=>{
-
-            });
+        computed: {
+            resData() {
+                return this.$store.state.CATEGORIESDATA;
+            }
+        },
+        mounted() {
+            this.$store.commit('NAVTITLE', '');
+            this.$store.commit('HAS_DONE', true);
         }
     }
 </script>

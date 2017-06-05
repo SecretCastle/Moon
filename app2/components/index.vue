@@ -25,6 +25,7 @@
     import axios from 'axios';
     //import Loading from './public/loading';
     import HomeItemGroup from './home_item/homeitemgroup';
+    import Public from '../utils/public';
 
     export default {
         data() {
@@ -42,16 +43,16 @@
             "home-item-group": HomeItemGroup
         },
         mounted() {
+            this.$store.commit('NAVTITLE', '');
             this.$store.commit('HAS_DONE', false);
-            axios.get('/section/0').then((res) => {
-                if (res) {
-                    //console.log("初始化的数据",res);
-                    this.imgData = res.data.data[0].recommends;
-                    this.$store.commit('HAS_DONE', true);
-                    this.homeData = this.filterData(res.data.data);
-                }
-            }).catch((err) => {
-                console.warn(err);
+            Public.MultiRequest('/section/0', 'categories').then(res => {
+                console.log(res);
+                this.imgData = res[0].data.data[0].recommends;
+                this.$store.commit('HAS_DONE', true);
+                this.homeData = this.filterData(res[0].data.data);
+                this.$store.commit('CATEGORIESDATA', res[1].data.data);
+            }).catch(err => {
+                throw err;
             });
         },
         methods: {

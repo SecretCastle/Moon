@@ -17,7 +17,10 @@ const state = {
     HAS_PROGRAMINFO_DONE_FLAG: false,
     HAS_PROGRAMLIST_DONE_FLAG: false,
     PLAYCONTENT_PIC: '',
-    PLAYAREASHOW: false
+    PLAYAREASHOW: true,
+    PLAYID: '',
+    NAVTITLE: '',
+    CATEGORIESDATA: []
 };
 
 export default new Vuex.Store({

@@ -31,10 +31,11 @@
                     let playUrl = this.itemData.mediainfo.bitrates_url[0].file_path;
                     this.$store.commit('SET_URL', this.itemData);
                     this.$store.commit('SET_HAS_PLAY', true);
-                    this.$store.commit('PLAYAREASHOW', true);
+                    //保存播放的id
+                    this.$store.commit('PLAYID', this.itemData.id);
                     localStorage.setItem('saveUrl', JSON.stringify(this.itemData));
                     this.$router.push({
-                        path: `/playboard/${this.itemData.id}`
+                        path: `/playboard`
                     });
                 } else {
                     this.$store.commit('TOAST_STATE', {

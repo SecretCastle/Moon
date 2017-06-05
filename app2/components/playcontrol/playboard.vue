@@ -21,14 +21,27 @@
         },
         created() {
             this.$store.commit('HAS_DONE', false);
-            this.id = this.$route.params.id;
+            this.$store.commit('PLAYAREASHOW', false);
+
+        },
+        computed: {
+            contentPic() {
+                return this.$store.state.PLAYCONTENT_PIC;
+            }
         },
         mounted() {
+            //加载背景图片
+            let meng = document.querySelector('.meng');
+            meng.style.backgroundImage = `url(${this.contentPic})`;
+            //获取存储的id状态
+            this.id = this.$store.state.PLAYID;
+            if (!this.id) {
+                this.$router.back(-1);
+            }
             axios.get(`/programs/${this.id}`).then(res => {
                 //Public.colorfulDebugConsole('log', 'blue', res);
                 if (res) {
                     this.$store.commit('HAS_DONE', true);
-                    this.$store.commit('PLAYAREASHOW', false);
                     this.data = res.data.data;
                     Public.colorfulDebugConsole('log', 'blue', this.data);
                 }
@@ -40,6 +53,13 @@
         components: {
             PlayControl,
             PlayContent
+        },
+        /*
+        此处修改底部弹窗播放器的状态，改为显示
+         */
+        destroyed() {
+            console.log('destoryed');
+            this.$store.commit('PLAYAREASHOW', true);
         }
     }
 </script>

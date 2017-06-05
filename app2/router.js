@@ -36,10 +36,6 @@ const Routes = new VueRouter({
         {
             path: '/playboard',
             component: PlayBoard
-        },
-        {
-            path: '/playboard/:id',
-            component: PlayBoard
         }
     ]
 });

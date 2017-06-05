@@ -1,8 +1,9 @@
 import axios from 'axios';
 import nodeUtil from 'util';
 
-
 const Public = {
+
+
     /**
      * 图片预加载方法,返回promise对象
      * 

@@ -4,16 +4,19 @@
 
 <script>
     export default {
-        props:{
-            itemData:{
-                type:Object,
-                require:true
+        props: {
+            itemData: {
+                type: Object,
+                require: true
             }
         },
-        methods:{
-            go(){
-                console.log("点击的分类id",this.itemData.id);
-                this.$router.push({path:`/recommend/${this.itemData.section_id}`});
+        methods: {
+            go() {
+                console.log("点击的分类id", this.itemData);
+                this.$router.push({
+                    path: `/recommend/${this.itemData.section_id}`
+                });
+                this.$store.commit('NAVTITLE', this.itemData.name);
             }
         }
     }

@@ -1,10 +1,10 @@
 <template>
-    <div class="play_panel" :class="[PLAYAREASHOW ? 'isPlay':'']" @click="toPlayPanel">
+    <div class="play_panel" :class="[PLAYAREASHOW && getUrl !== null ? 'isPlay':'']" @click="toPlayPanel">
         <audio :src="playLink" id="Music" autoplay></audio>
         <div class="play_mid_panel flex-left"> 
             <div class="panel_left flex-left">
                 <div class="play_urlImg">
-                    <img src="https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg" />
+                    <img src="https://img.alicdn.com/imgextra/i3/786678272/TB2ZOGJaMOI.eBjSszhXXbHvFXa_!!786678272.jpg"  id="CONTENT_PIC"/>
                 </div>
                 <div class="play_mid_title">
                     <span>{{getUrl? getUrl.title :''}}</span>
@@ -32,6 +32,9 @@
                 playLink: ''
             }
         },
+        created() {
+            let CONTENT_PIC = document.getElementById('CONTENT_PIC');
+        },
         computed: {
             getUrl() {
                 return this.$store.state.playUrl;
@@ -44,6 +47,9 @@
             },
             PLAYAREASHOW() {
                 return this.$store.state.PLAYAREASHOW;
+            },
+            SHOWPIC() {
+                return this.$store.state.PLAYCONTENT_PIC;
             }
         },
         methods: {
@@ -76,6 +82,11 @@
                         console.log('加载中');
                     }
                 }, 500);
+            },
+            toPlayPanel() {
+                this.$router.push({
+                    path: '/playboard'
+                })
             }
 
         },
@@ -93,7 +104,6 @@
             }
         },
         updated() {
-
             this.playUrl();
             console.log('update');
             Public.preLoadAudio(basUrl + this.getUrl.mediainfo.bitrates_url[0].file_path).then((res) => {
@@ -104,7 +114,15 @@
             }).catch((err) => {
                 console.log(err);
             });
+            if (this.SHOWPIC) {
+                Public.preImgLoad(this.SHOWPIC).then(res => {
+                    if (res) {
+                        CONTENT_PIC.src = res.src;
+                    }
+                }).catch(err => {
 
+                });
+            }
         }
     }
 </script>
