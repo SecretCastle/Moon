@@ -8,6 +8,9 @@ module.exports = Merge(CommonConfig, {
     /**
      * 可怜的跨域问题，在开发模式下，只能配置proxy了
      */
+    plugins: [
+        new webpack.optimize.ModuleConcatenationPlugin()
+    ],
     devServer: {
         proxy: {
             '/categories': {

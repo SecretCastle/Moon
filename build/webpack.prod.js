@@ -15,6 +15,7 @@ module.exports = Merge(CommonConfig, {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        new webpack.optimize.ModuleConcatenationPlugin()
     ]
 });
